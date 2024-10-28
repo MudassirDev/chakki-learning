@@ -10,6 +10,9 @@ loginForm.addEventListener('submit', function (e) {
     .then(() => {
         return firebase.signInFn(firebase.auth, email, password);
     })
+    .then(data => {
+        console.log(data);
+    })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
