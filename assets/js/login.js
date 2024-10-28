@@ -12,6 +12,7 @@ loginForm.addEventListener('submit', function (e) {
     })
     .then(data => {
         console.log(data);
+        window.location.href = "/chakki-learning/";
     })
     .catch((error) => {
         const errorCode = error.code;
