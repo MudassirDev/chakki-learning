@@ -6,7 +6,7 @@ loginForm.addEventListener('submit', function (e) {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    firebase.setPersistence(firebase.auth, firebase.inMemoryPersistence)
+    firebase.setPersistence(firebase.auth, firebase.browserSessionPersistence)
     .then(() => {
         return firebase.signInFn(firebase.auth, email, password);
     })
