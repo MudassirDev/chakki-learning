@@ -6,9 +6,18 @@ loginForm.addEventListener('submit', function (e) {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    firebase.signInFn(firebase.auth, email, password).then(data => {
-        console.log(data)
-    }).catch(err => {
-        console.log(err)
+    // firebase.signInFn(firebase.auth, email, password).then(data => {
+    //     console.log(data)
+    // }).catch(err => {
+    //     console.log(err)
+    // })
+    firebase.setPersistence(firebase.auth, firebase.browserSessionPersistence)
+    .then(() => {
+        return firebase.signInFn(firebase.auth, email, password);
     })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage)
+    });
 })
