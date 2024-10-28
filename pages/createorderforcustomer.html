@@ -46,9 +46,9 @@
         logoutBtn.addEventListener('click', function() {
             firebase.signOut(firebase.auth).then(() => {
                 window.location.href = '/chakki-learning/';
-                }).catch((error) => {
+            }).catch((error) => {
                 console.log(error)
-                });
+            });
         })
     </script>
 </body>

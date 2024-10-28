@@ -5,5 +5,6 @@ firebase.onAuthStateChanged(firebase.auth, (user) => {
     } else {
         console.log("No user is signed in.");
         window.userLoggedIn = false;
+        window.location.href = "/chakki-learning/"
     }
 });
