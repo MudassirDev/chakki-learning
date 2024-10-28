@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+    <p>This is homepage</p>
+    <a href="file:///home/mudassir/Programming/projects/ChakkiTut/pages/login.html">Login</a>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyALfhkR7cRDhKP5E5BgR8UeNJ_9gjv44s8",
+            authDomain: "chakki-learning.firebaseapp.com",
+            projectId: "chakki-learning",
+            storageBucket: "chakki-learning.appspot.com",
+            messagingSenderId: "1011286300235",
+            appId: "1:1011286300235:web:d0c5577eace92a3a9f5fce",
+            measurementId: "G-8N10L72SL5"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.firebase = {
+            auth: auth,
+        }
+    </script>
+    <script src="/assets/js/index.js" defer></script>
+</body>
+
+</html>
