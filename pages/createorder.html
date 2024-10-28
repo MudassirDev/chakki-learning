@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Document</title>
     <link rel="stylesheet" href="/chakki-learning/assets/css/style.css">
 </head>
-
 <body>
-
-    <div id="application">
-        <p>Loading...</p>
-    </div>
+    
+    <ul>
+        <li><a class="active" href="/chakki-learning/">Home</a></li>
+        <li><a class="active" href="/chakki-learning/pages/createcustomer.html">Create Customer</a></li>
+        <li><a class="active" href="/chakki-learning/pages/createorderforcustomer.html">Create Order (For Customer)</a></li>
+        <li><a class="active" href="/chakki-learning/pages/createorder.html">Create Order</a></li>
+        <li><a id="logoutBtn" href="#">Logout</a></li>
+    </ul>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -37,9 +39,6 @@
             signOut: signOut
         }
     </script>
-    <script src="/chakki-learning/assets/js/global.js" defer></script>
-    <script src="/chakki-learning/assets/js/index.js" defer></script>
-    <script src="/chakki-learning/assets/js/logout.js" defer></script>
-</body>
 
+</body>
 </html>
