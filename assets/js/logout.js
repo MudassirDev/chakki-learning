@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("build", ()=>{
   const logoutBtn = document.getElementById('logoutBtn');
   
   logoutBtn.addEventListener('click', function() {

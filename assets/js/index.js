@@ -1,5 +1,5 @@
 const app = document.getElementById('application');
-
+const customEvent = new CustomEvent("build");
 
 let intervalId = setInterval(()=>{
     if (window.userLoggedIn != undefined) {
@@ -16,6 +16,7 @@ let intervalId = setInterval(()=>{
                 <li><a id="logoutBtn" href="#">Logout</a></li>
             </ul>
             `;
+            document.dispatchEvent(customEvent);
         } else {
             app.innerHTML = `
             <ul>
