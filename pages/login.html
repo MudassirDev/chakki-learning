@@ -17,7 +17,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, setPersistence, inMemoryPersistence, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyALfhkR7cRDhKP5E5BgR8UeNJ_9gjv44s8",
@@ -36,7 +36,7 @@
             auth: auth,
             signInFn: signInWithEmailAndPassword,
             setPersistence: setPersistence,
-            browserSessionPersistence: browserSessionPersistence,
+            inMemoryPersistence: inMemoryPersistence,
             onAuthStateChanged: onAuthStateChanged
         }
     </script>
