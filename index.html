@@ -15,7 +15,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getAuth } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyALfhkR7cRDhKP5E5BgR8UeNJ_9gjv44s8",
@@ -32,9 +32,11 @@
 
         window.firebase = {
             auth: auth,
+            onAuthStateChanged: onAuthStateChanged
         }
     </script>
     <script src="/chakki-learning/assets/js/index.js" defer></script>
+    <script src="/chakki-learning/assets/js/global.js"></script>
 </body>
 
 </html>
