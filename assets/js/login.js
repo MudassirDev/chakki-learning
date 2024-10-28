@@ -10,8 +10,7 @@ loginForm.addEventListener('submit', function (e) {
     .then(() => {
         return firebase.signInFn(firebase.auth, email, password);
     })
-    .then(data => {
-        console.log(data);
+    .then(() => {
         window.location.href = "/chakki-learning/";
     })
     .catch((error) => {

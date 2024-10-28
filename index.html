@@ -10,13 +10,18 @@
 
 <body>
 
+    <ul>
+        <li><a class="active" href="/chakki-learning/">Home</a></li>
+        <li><a id="logoutBtn" href="#">Logout</a></li>
+      </ul>
+
     <div id="application">
         <p>Loading...</p>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyALfhkR7cRDhKP5E5BgR8UeNJ_9gjv44s8",
@@ -33,11 +38,13 @@
 
         window.firebase = {
             auth: auth,
-            onAuthStateChanged: onAuthStateChanged
+            onAuthStateChanged: onAuthStateChanged,
+            signOut: signOut
         }
     </script>
     <script src="/chakki-learning/assets/js/global.js" defer></script>
     <script src="/chakki-learning/assets/js/index.js" defer></script>
+    <script src="/chakki-learning/assets/js/logout.js" defer></script>
 </body>
 
 </html>
