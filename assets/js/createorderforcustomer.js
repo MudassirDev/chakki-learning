@@ -29,6 +29,10 @@ function capitalizeWords(str) {
 
 allItems.forEach(item => {
     item.querySelector('.itemDivAmount input').addEventListener("input", function() {
-        console.log(this.value)
+        if (this.value.trim() != "") {
+            item.querySelector('.itemDivPrice').style.display = "block";
+        } else {
+            item.querySelector('.itemDivPrice').style.display = "none";
+        }
     })
 })
