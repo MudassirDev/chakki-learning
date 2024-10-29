@@ -51,6 +51,13 @@ createOrderForm.addEventListener('submit', async function(e) {
     const specialAtaAmount = formData.get("items[special_ata][amount]");
     const specialAtaPrice = formData.get("items[special_ata][price]");
 
+    if (sadaAtaAmount.trim() == "" && chokarAmount.trim() == "" && specialAtaAmount.trim() == "") {
+        createOrderForm.style.display = "block";
+        createOrderLoader.style.display = "none";
+        alert("one item is required for the order")
+        return
+    }
+
     if (sadaAtaAmount.trim() != "" && sadaAtaPrice == "") {
         createOrderForm.style.display = "block";
         createOrderLoader.style.display = "none";
