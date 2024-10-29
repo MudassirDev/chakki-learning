@@ -5,21 +5,29 @@ createCustomerForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     const formData = new FormData(createCustomerForm);
     const name = formData.get("customer-name");
-    console.log(name)
     try {
-        await firebase.setDoc(firebase.doc(firebase.db, "Customers", name), {
-            orders: JSON.stringify([{name: "something"}])
-        });
-        console.log("Customer Added");
+        if (customerExists(name)) {
+            console.log("This customer already exists");
+        } else {
+            console.log("This customer doesn't exists")
+        }
+        // await firebase.setDoc(firebase.doc(firebase.db, "Customers", name), {
+        //     orders: JSON.stringify([{name: "something"}])
+        // });
+        // console.log("Customer Added");
     } catch (e) {
         console.error("Error adding document: ", e);
     }
 })
 
-getCustomers.addEventListener('click', async function() {
+
+async function customerExists(nameToCheck) {
     const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
-    console.log(querySnapshot)
+    let customerExists = false;
     querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
+        if (doc.id == nameToCheck) {
+            customerExists = true;
+        }
     });
-})
+    return customerExists
+}
