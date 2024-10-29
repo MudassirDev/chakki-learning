@@ -52,3 +52,7 @@ ul {
   }
 
   /* loader ends here */
+
+  .itemDiv {
+    display: flex;
+  }
