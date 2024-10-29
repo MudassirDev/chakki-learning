@@ -5,7 +5,7 @@ async function getCustomers() {
     querySnapshot.forEach(doc => {
         const option = document.createElement("option");
         option.setAttribute("value", doc.id)
-        option.innerHTML = doc.id;
+        option.innerHTML = capitalizeWords(doc.id.toLowerCase());
         customerSelect.append(option);
     });
 }
@@ -19,3 +19,7 @@ customerSelect.addEventListener('change', function() {
         console.log("This is not a valid customer")
     }
 })
+
+function capitalizeWords(str) {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+  }
