@@ -5,4 +5,5 @@ createCustomerForm.addEventListener('submit', function(e) {
     const formData = new FormData(createCustomerForm);
     const name = formData.get("customer-name");
     console.log(name)
+    console.log(firebase.db)
 })
