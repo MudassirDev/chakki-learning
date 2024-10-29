@@ -16,6 +16,11 @@
         <li><a id="logoutBtn" href="#">Logout</a></li>
     </ul>
 
+    <form id="create-customer">
+        <input type="text" name="customer-name" placeholder="Name">
+        <input type="submit" value="Create Customer">
+    </form>
+
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -40,6 +45,19 @@
             signOut: signOut
         }
     </script>
+    <script src="/chakki-learning/assets/js/global.js" defer></script>
+    <script defer>
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        logoutBtn.addEventListener('click', function() {
+            firebase.signOut(firebase.auth).then(() => {
+                window.location.href = '/chakki-learning/';
+            }).catch((error) => {
+                console.log(error)
+            });
+        })
+    </script>
+    <script src="/chakki-learning/assets/js/createcustomer.js" defer></script>
     
 </body>
 </html>
