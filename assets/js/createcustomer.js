@@ -6,7 +6,8 @@ createCustomerForm.addEventListener('submit', async function(e) {
     const formData = new FormData(createCustomerForm);
     const name = formData.get("customer-name");
     try {
-        if (customerExists(name)) {
+        const exists = await customerExists(name);
+        if (exists) {
             console.log("This customer already exists");
         } else {
             console.log("This customer doesn't exists")
