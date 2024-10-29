@@ -2,7 +2,6 @@ const customerSelect = document.getElementById('selectCustomer');
 const createOrderForm = document.getElementById('create-order').querySelector('form');
 const createOrderLoader = document.getElementById('create-order').querySelector('.loader');
 const allItems = createOrderForm.querySelectorAll('.itemDiv');
-const receipt = document.getElementById('receipt');
 const date = getCurrentDate();
 
 async function fillSelect() {
