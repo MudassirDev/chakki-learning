@@ -105,7 +105,7 @@ function getAllValues() {
 function createOrder() {
     const [sadaAtaAmount, sadaAtaPrice, chokarAmount, chokarPrice, specialAtaAmount, specialAtaPrice, paidAmount] = getAllValues();
 
-    if (!validateValues) {
+    if (!validateValues()) {
         return false;
     }
 
