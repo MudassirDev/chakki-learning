@@ -7,9 +7,9 @@ createCustomerForm.addEventListener('submit', async function(e) {
     const name = formData.get("customer-name");
     console.log(name)
     try {
-        await firebase.setDoc(firebase.doc(firebase.db, "Customers", name), {
-            orders: [{name: "something"}]
-        });
+        await firebase.setDoc(firebase.doc(firebase.db, "Customers", name), JSON.stringify({
+            orders: []
+        }));
         console.log("Customer Added");
     } catch (e) {
         console.error("Error adding document: ", e);
