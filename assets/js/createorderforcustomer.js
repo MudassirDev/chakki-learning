@@ -3,7 +3,7 @@ const createOrderForm = document.getElementById('create-order').querySelector('f
 const createOrderLoader = document.getElementById('create-order').querySelector('.loader');
 const allItems = createOrderForm.querySelectorAll('.itemDiv');
 
-async function getCustomers() {
+async function fillSelect() {
     const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
     querySnapshot.forEach(doc => {
         const option = document.createElement("option");
@@ -13,7 +13,7 @@ async function getCustomers() {
     });
 }
 
-getCustomers();
+fillSelect();
 
 customerSelect.addEventListener('change', function() {
     if (this.value != "select") {
@@ -35,4 +35,40 @@ allItems.forEach(item => {
             item.querySelector('.itemDivPrice').style.display = "none";
         }
     })
+})
+
+createOrderForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    createOrderForm.style.display = "none";
+    createOrderLoader.style.display = "block";
+
+    const formData = new FormData(createOrderForm);
+    const sadaAtaAmount = formData.get("items[sada_ata][amount]");
+    const sadaAtaPrice = formData.get("items[sada_ata][price]");
+    const chokarAmount = formData.get("items[chokar][amount]");
+    const chokarPrice = formData.get("items[chokar][price]")
+    const specialAtaAmount = formData.get("items[special_ata][amount]");
+    const specialAtaPrice = formData.get("items[special_ata][price]");
+
+    if (sadaAtaAmount.trim() != "" && sadaAtaPrice == "") {
+        createOrderForm.style.display = "block";
+        createOrderLoader.style.display = "none";
+        alert("If item amount is not empty then item price cannot be empty");
+        return;
+    }
+
+    if (chokarAmount.trim() != "" && chokarPrice == "") {
+        createOrderForm.style.display = "block";
+        createOrderLoader.style.display = "none";
+        alert("If item amount is not empty then item price cannot be empty");
+        return;
+    }
+
+    if (specialAtaAmount.trim() != "" && specialAtaPrice == "") {
+        createOrderForm.style.display = "block";
+        createOrderLoader.style.display = "none";
+        alert("If item amount is not empty then item price cannot be empty");
+        return;
+    }
 })
