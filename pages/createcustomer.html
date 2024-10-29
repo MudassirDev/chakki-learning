@@ -16,10 +16,13 @@
         <li><a id="logoutBtn" href="#">Logout</a></li>
     </ul>
 
-    <form id="create-customer">
-        <input type="text" name="customer-name" placeholder="Name">
-        <input type="submit" value="Create Customer">
-    </form>
+    <div id="customer-main">
+        <form>
+            <input type="text" name="customer-name" placeholder="Name">
+            <input type="submit" value="Create Customer">
+        </form>
+        <div class="loader" style="display: none;"></div>
+    </div>
 
     <button id="getCustomers">Get all Customers</button>
 

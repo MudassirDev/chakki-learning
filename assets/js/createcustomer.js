@@ -1,10 +1,16 @@
-const createCustomerForm = document.getElementById('create-customer');
+const createCustomerForm = document.getElementById('customer-main').querySelector('form');
+const loader = document.getElementById('customer-main').querySelector('.loader');
 const getCustomers = document.getElementById('getCustomers');
 
 createCustomerForm.addEventListener('submit', async function(e) {
     e.preventDefault();
+
+    createCustomerForm.style.display = "none";
+    loader.style.display = "block";
+
     const formData = new FormData(createCustomerForm);
     const name = formData.get("customer-name");
+
     try {
         const exists = await customerExists(name);
         if (exists) {
@@ -19,6 +25,10 @@ createCustomerForm.addEventListener('submit', async function(e) {
     } catch (e) {
         console.error("Error adding customer: ", e);
     }
+
+
+    createCustomerForm.style.display = "block";
+    loader.style.display = "none";
 })
 
 
