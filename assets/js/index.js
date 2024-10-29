@@ -1,5 +1,4 @@
 const app = document.getElementById('application');
-const customEvent = new CustomEvent("build");
 
 let intervalId = setInterval(()=>{
     if (window.userLoggedIn != undefined) {
@@ -16,7 +15,15 @@ let intervalId = setInterval(()=>{
                 <li><a id="logoutBtn" href="#">Logout</a></li>
             </ul>
             `;
-            document.dispatchEvent(customEvent);
+            const logoutBtn = document.getElementById('logoutBtn');
+  
+            logoutBtn.addEventListener('click', function() {
+                firebase.signOut(firebase.auth).then(() => {
+                    window.location.href = '/chakki-learning/';
+                  }).catch((error) => {
+                    console.log(error)
+                  });
+            })
         } else {
             app.innerHTML = `
             <ul>
