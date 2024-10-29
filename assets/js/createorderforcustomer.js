@@ -11,3 +11,11 @@ async function getCustomers() {
 }
 
 getCustomers();
+
+customerSelect.addEventListener('change', function() {
+    if (this.value != "select") {
+        console.log("This is a valid customer")
+    } else {
+        console.log("This is not a valid customer")
+    }
+})
