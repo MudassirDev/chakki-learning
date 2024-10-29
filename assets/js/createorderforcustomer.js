@@ -28,7 +28,7 @@ function capitalizeWords(str) {
 }
 
 allItems.forEach(item => {
-    item.querySelector('.itemDivAmount input').addEventListener("change", function() {
+    item.querySelector('.itemDivAmount input').addEventListener("input", function() {
         console.log(this.value)
     })
 })
