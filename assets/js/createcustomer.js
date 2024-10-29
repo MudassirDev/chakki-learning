@@ -8,16 +8,16 @@ createCustomerForm.addEventListener('submit', async function(e) {
     try {
         const exists = await customerExists(name);
         if (exists) {
-            console.log("This customer already exists");
+            alert("This customer already exists");
         } else {
             console.log("This customer doesn't exists")
+            await firebase.setDoc(firebase.doc(firebase.db, "Customers", name), {
+                orders: JSON.stringify([])
+            });
+            console.log("Customer Added");
         }
-        // await firebase.setDoc(firebase.doc(firebase.db, "Customers", name), {
-        //     orders: JSON.stringify([{name: "something"}])
-        // });
-        // console.log("Customer Added");
     } catch (e) {
-        console.error("Error adding document: ", e);
+        console.error("Error adding customer: ", e);
     }
 })
 
