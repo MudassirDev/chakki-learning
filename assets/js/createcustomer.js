@@ -14,7 +14,7 @@ createCustomerForm.addEventListener('submit', async function(e) {
             await firebase.setDoc(firebase.doc(firebase.db, "Customers", name), {
                 orders: JSON.stringify([])
             });
-            console.log("Customer Added");
+            alert("Customer Added");
         }
     } catch (e) {
         console.error("Error adding customer: ", e);
