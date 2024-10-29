@@ -26,7 +26,7 @@ async function customerExists(nameToCheck) {
     const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
     let customerExists = false;
     querySnapshot.forEach((doc) => {
-        if (doc.id == nameToCheck) {
+        if (doc.id.toLowerCase() == nameToCheck.toLowerCase()) {
             customerExists = true;
         }
     });
