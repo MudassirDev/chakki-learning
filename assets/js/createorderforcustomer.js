@@ -118,16 +118,19 @@ function createOrder() {
     }
 
     if (sadaAtaAmount.trim != "") {
+        order.items.sadaAta = {};
         order.items.sadaAta.amount = sadaAtaAmount;
         order.items.sadaAta.price = Number(sadaAtaPrice);
     }
 
     if (chokarAmount.trim != "") {
+        order.items.chokar = {};
         order.items.chokar.amount = chokarAmount;
         order.items.chokar.price = Number(chokarPrice);
     }
 
     if (specialAtaAmount.trim != "") {
+        order.items.specialAta = {};
         order.items.specialAta.amount = specialAtaAmount;
         order.items.specialAta.price = Number(specialAtaPrice);
     }
