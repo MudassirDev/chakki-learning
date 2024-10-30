@@ -54,8 +54,11 @@ createOrderForm.addEventListener('submit', async function(e) {
         const docSnap = await firebase.getDoc(docRef);
 
         if (docSnap.exists()) {
-            const data = docSnap.data()
-            console.log("Document data:", typeof data.orders, data.orders, JSON.parse(data.orders));
+            const data = docSnap.data();
+            const orders = JSON.parse(data.orders)
+            order.id = orders.length + 1;
+            orders.push(order);
+            console.log(orders)
         } else {
             console.log("No such document!");
         }
