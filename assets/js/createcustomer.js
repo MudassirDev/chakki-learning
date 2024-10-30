@@ -17,7 +17,7 @@ createCustomerForm.addEventListener('submit', async function(e) {
             alert("This customer already exists");
         } else {
             console.log("This customer doesn't exists")
-            await firebase.setDoc(firebase.doc(firebase.db, "Customers", name), {
+            await firebase.setDoc(firebase.doc(firebase.db, "Customers", name.toLowerCase()), {
                 orders: JSON.stringify([])
             });
             alert("Customer Added");
