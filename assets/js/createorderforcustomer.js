@@ -48,6 +48,20 @@ createOrderForm.addEventListener('submit', async function(e) {
         return;
     }
 
+    try {
+        console.log(customerSelect.value.toLowerCase());
+        const docRef = firebase.doc(firebase.db, "Customers", customerSelect.value.toLowerCase());
+        const docSnap = await firebase.getDoc(docRef);
+
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+        } else {
+            console.log("No such document!");
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
     console.log(order)
     createOrderForm.style.display = "block";
     createOrderLoader.style.display = "none";
