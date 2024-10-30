@@ -67,7 +67,7 @@ createOrderForm.addEventListener('submit', async function(e) {
             order.id = id;
             orders.push(order)
             await firebase.setDoc(firebase.doc(firebase.db, "Customers", customerSelect.value.toLowerCase()), {
-                orders: JSON.stringify(orders)
+                orders: orders
             });
             console.log(orders)
         } else {
