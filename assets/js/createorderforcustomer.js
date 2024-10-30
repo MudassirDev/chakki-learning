@@ -67,6 +67,7 @@ createOrderForm.addEventListener('submit', async function(e) {
             order.id = id;
             orders.push(order);
             console.log(orders)
+            console.log(JSON.stringify(orders))
         } else {
             console.log("No such document!");
         }
