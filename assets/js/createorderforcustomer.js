@@ -65,9 +65,10 @@ createOrderForm.addEventListener('submit', async function(e) {
                 }
             }
             order.id = id;
-            orders.push(order);
+            await firebase.setDoc(firebase.doc(firebase.db, "Customers", customerSelect.value.toLowerCase()), {
+                orders: JSON.stringify(orders)
+            });
             console.log(orders)
-            console.log(JSON.stringify(orders))
         } else {
             console.log("No such document!");
         }
