@@ -55,7 +55,7 @@ createOrderForm.addEventListener('submit', async function(e) {
 
         if (docSnap.exists()) {
             const data = docSnap.data();
-            const orders = JSON.parse(data.orders)
+            const orders = data.orders
             let id = orders.length + 1;
             while (true) {
                 if (orders.some(item => item.id == id)) {
