@@ -54,9 +54,9 @@ createOrderForm.addEventListener('submit', async function(e) {
 })
 
 function validateValues() {
-    const [sadaAtaAmount, sadaAtaPrice, chokarAmount, chokarPrice, specialAtaAmount, specialAtaPrice] = getAllValues();
+    const [sadaAtaAmount, sadaAtaPrice, chokarAmount, chokarPrice, specialAtaAmount, specialAtaPrice, daraAmount, daraPrice] = getAllValues();
 
-    if (sadaAtaAmount.trim() == "" && chokarAmount.trim() == "" && specialAtaAmount.trim() == "") {
+    if (sadaAtaAmount.trim() == "" && chokarAmount.trim() == "" && specialAtaAmount.trim() == "" && daraAmount.trim() == "") {
         createOrderForm.style.display = "block";
         createOrderLoader.style.display = "none";
         alert("one item is required for the order")
@@ -84,6 +84,13 @@ function validateValues() {
         return false;
     }
 
+    if (daraAmount.trim() != "" && daraPrice == "") {
+        createOrderForm.style.display = "block";
+        createOrderLoader.style.display = "none";
+        alert("If item amount is not empty then item price cannot be empty");
+        return false;
+    }
+
     return true;
 }
 
@@ -96,13 +103,15 @@ function getAllValues() {
     const chokarPrice = formData.get("items[chokar][price]")
     const specialAtaAmount = formData.get("items[special_ata][amount]");
     const specialAtaPrice = formData.get("items[special_ata][price]");
+    const daraAmount = formData.get("items[dara][amount]");
+    const daraPrice = formData.get("items[dara][price]");
     const paidAmount = formData.get("paid_amount");
 
-    return [sadaAtaAmount, sadaAtaPrice, chokarAmount, chokarPrice, specialAtaAmount, specialAtaPrice, paidAmount];
+    return [sadaAtaAmount, sadaAtaPrice, chokarAmount, chokarPrice, specialAtaAmount, specialAtaPrice, daraAmount, daraPrice, paidAmount];
 }
 
 function createOrder() {
-    const [sadaAtaAmount, sadaAtaPrice, chokarAmount, chokarPrice, specialAtaAmount, specialAtaPrice, paidAmount] = getAllValues();
+    const [sadaAtaAmount, sadaAtaPrice, chokarAmount, chokarPrice, specialAtaAmount, specialAtaPrice, daraAmount, daraPrice, paidAmount] = getAllValues();
 
     if (!validateValues()) {
         return false;
@@ -132,6 +141,12 @@ function createOrder() {
         order.items.specialAta = {};
         order.items.specialAta.amount = specialAtaAmount;
         order.items.specialAta.price = Number(specialAtaPrice);
+    }
+
+    if (daraAmount.trim() != "") {
+        order.items.dara = {};
+        order.items.dara.amount = daraAmount;
+        order.items.dara.price = Number(daraPrice);
     }
 
     for (const key in order.items) {
