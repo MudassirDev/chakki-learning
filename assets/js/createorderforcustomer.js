@@ -54,7 +54,7 @@ createOrderForm.addEventListener('submit', async function(e) {
         const docSnap = await firebase.getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
+            console.log("Document data:", docSnap.data(), docSnap.id);
         } else {
             console.log("No such document!");
         }
