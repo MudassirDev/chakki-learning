@@ -55,16 +55,10 @@ createOrderForm.addEventListener('submit', async function(e) {
 
         if (docSnap.exists()) {
             const data = docSnap.data();
-            const orders = data.orders
-            let id = orders.length + 1;
-            while (true) {
-                if (orders.some(item => item.id == id)) {
-                    id += 1
-                } else {
-                    break;
-                }
-            }
-            order.id = id;
+            const orders = data.orders;
+            const response = await fetch('https://www.uuidtools.com/api/generate/v1');
+            const uuid = await response.json();
+            order.id = uuid[0];
             orders.push(order)
             await firebase.setDoc(firebase.doc(firebase.db, "Customers", customerSelect.value.toLowerCase()), {
                 orders: orders
