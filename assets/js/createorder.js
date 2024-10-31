@@ -13,6 +13,16 @@ function getCurrentDate() {
     return `${day}-${month}-${year}`;
 }
 
+allItems.forEach(item => {
+    item.querySelector('.itemDivAmount input').addEventListener("input", function() {
+        if (this.value.trim() != "") {
+            item.querySelector('.itemDivPrice').style.display = "block";
+        } else {
+            item.querySelector('.itemDivPrice').style.display = "none";
+        }
+    })
+})
+
 createOrderForm.addEventListener('submit', async function(e) {
     e.preventDefault();
 
