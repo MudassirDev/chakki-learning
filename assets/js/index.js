@@ -23,7 +23,9 @@ let intervalId = setInterval(()=>{
                   }).catch((error) => {
                     console.log(error)
                   });
-            })
+            });
+
+            getData();
         } else {
             app.innerHTML = `
             <ul>
@@ -40,5 +42,3 @@ async function getData() {
     const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
     querySnapshot.forEach(item => {console.log(item.data())})
 }
-
-getData();
