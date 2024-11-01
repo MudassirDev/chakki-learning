@@ -205,7 +205,8 @@ function addToCart() {
     }
 
     window.deleteItem = (item) => {
-        console.log("working", item)
+        delete order.items[item];
+        displayAllItems();
     }
 }
 
