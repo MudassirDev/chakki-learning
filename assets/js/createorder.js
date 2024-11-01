@@ -156,6 +156,7 @@ function createOrder() {
 
 
 function addToCart() {
+    const outcome = document.getElementById('outcome');
     const order = {
         items: {}
     };
@@ -176,9 +177,22 @@ function addToCart() {
                 price
             };
 
-            console.log(order)
+            displayAllItems();
         })
     })
+
+    function displayAllItems() {
+        for (const [k, v] of Object.entries(order.items)) {
+            const div = document.createElement('div');
+            div.setAttribute('class', "item");
+            for (const [k, v] of Object.entries(order.items[k])) {
+                const p = document.createElement('p');
+                p.innerText = `${k}-${v}`;
+                div.append(p);
+            }
+            outcome.append(div);
+        }
+    }
 }
 
 addToCart();
