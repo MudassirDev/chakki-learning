@@ -153,3 +153,30 @@ function createOrder() {
 
     return order;
 }
+
+
+function addToCart() {
+    const order = {
+        items: {}
+    };
+    const allForms = document.getElementById('add-to-cart-forms').querySelectorAll('form');
+    allForms.forEach(form => {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const quantity = formData.get("quantity");
+            const amount = formData.get("amount");
+            const price = formData.get("price");
+
+            const item = form.getAttribute('id');
+
+            order.items[item] = {
+                quantity,
+                amount,
+                price
+            };
+
+            console.log(order)
+        })
+    })
+}
