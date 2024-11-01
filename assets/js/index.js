@@ -34,3 +34,11 @@ let intervalId = setInterval(()=>{
         }
     }
 }, 100);
+
+
+async function getData() {
+    const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
+    querySnapshot.forEach(item => {console.log(item.data())})
+}
+
+getData();
