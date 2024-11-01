@@ -197,13 +197,14 @@ function addToCart() {
             }
             const deleteBtn = document.createElement('button');
             deleteBtn.setAttribute('onclick', `deleteItem("${k}")`)
+            deleteBtn.innerText = "Delete"
             div.append(deleteBtn);
             outcomeDiv.append(div);
         }
         outcome.innerHTML = outcomeDiv.innerHTML;
     }
 
-    function deleteItem(item) {
+    window.deleteItem = (item) => {
         console.log("working", item)
     }
 }
