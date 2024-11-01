@@ -195,9 +195,16 @@ function addToCart() {
                 p.innerText = `${key}-${value}`;
                 div.append(p);
             }
+            const deleteBtn = document.createElement('button');
+            deleteBtn.setAttribute('onclick', `deleteItem("${k}")`)
+            div.append(deleteBtn);
             outcomeDiv.append(div);
         }
         outcome.innerHTML = outcomeDiv.innerHTML;
+    }
+
+    function deleteItem(item) {
+        console.log("working", item)
     }
 }
 
