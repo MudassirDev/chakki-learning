@@ -183,19 +183,21 @@ function addToCart() {
     })
 
     function displayAllItems() {
+        const outcomeDiv = document.createElement('div');
         for (const [k, v] of Object.entries(order.items)) {
             const div = document.createElement('div');
             const itemName = document.createElement('p');
             itemName.innerText = k;
-            div.append(k);
+            div.append(itemName);
             div.setAttribute('class', "item");
             for (const [key, value] of Object.entries(order.items[k])) {
                 const p = document.createElement('p');
                 p.innerText = `${key}-${value}`;
                 div.append(p);
             }
-            outcome.innerHTML = div.innerHTML;
+            outcomeDiv.append(div);
         }
+        outcome.innerHTML = outcomeDiv.innerHTML;
     }
 }
 
