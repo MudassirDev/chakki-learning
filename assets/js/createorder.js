@@ -177,6 +177,7 @@ function addToCart() {
                 price
             };
 
+            console.log(order)
             displayAllItems();
         })
     })
