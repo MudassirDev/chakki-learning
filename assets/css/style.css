@@ -56,3 +56,8 @@ ul {
   .itemDiv {
     display: flex;
   }
+
+  #outcome .item {
+    display: flex;
+    gap: 20px;
+  }
