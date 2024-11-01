@@ -184,6 +184,9 @@ function addToCart() {
     function displayAllItems() {
         for (const [k, v] of Object.entries(order.items)) {
             const div = document.createElement('div');
+            const itemName = document.createElement('p');
+            itemName.innerText = k;
+            div.append(k);
             div.setAttribute('class', "item");
             for (const [key, value] of Object.entries(order.items[k])) {
                 const p = document.createElement('p');
