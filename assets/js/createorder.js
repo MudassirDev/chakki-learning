@@ -185,9 +185,9 @@ function addToCart() {
         for (const [k, v] of Object.entries(order.items)) {
             const div = document.createElement('div');
             div.setAttribute('class', "item");
-            for (const [k, v] of Object.entries(order.items[k])) {
+            for (const [key, value] of Object.entries(order.items[k])) {
                 const p = document.createElement('p');
-                p.innerText = `${k}-${v}`;
+                p.innerText = `${key}-${value}`;
                 div.append(p);
             }
             outcome.append(div);
