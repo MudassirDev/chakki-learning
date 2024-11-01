@@ -193,7 +193,7 @@ function addToCart() {
                 p.innerText = `${key}-${value}`;
                 div.append(p);
             }
-            outcome.append(div);
+            outcome.innerHTML = div.innerHTML;
         }
     }
 }
