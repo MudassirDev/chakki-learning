@@ -168,7 +168,7 @@ function addToCart() {
             const amount = formData.get("amount");
             const price = formData.get("price");
 
-            const item = form.getAttribute('id');
+            const item = `${form.getAttribute('id')}-${amount}`;
 
             order.items[item] = {
                 quantity,
