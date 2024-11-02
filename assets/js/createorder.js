@@ -181,9 +181,7 @@ function addToCart() {
                 price
             };
 
-            for (const key in order.items) {
-                order.orderAmount = (order.orderAmount * 1) + (order.items[key].price * 1);
-            }
+            order.orderAmount = (order.orderAmount * 1) + (order.items[item].price * 1)
 
             console.log(order)
 
