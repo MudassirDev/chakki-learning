@@ -158,7 +158,11 @@ function createOrder() {
 function addToCart() {
     const outcome = document.getElementById('outcome');
     const order = {
-        items: {}
+        date: date,
+        items: {},
+        orderAmount: 0,
+        paidAmount: 0,
+        remainingAmount: 0,
     };
     const allForms = document.getElementById('add-to-cart-forms').querySelectorAll('form');
     allForms.forEach(form => {
@@ -177,7 +181,12 @@ function addToCart() {
                 price
             };
 
+            for (const key in order.items) {
+                order.orderAmount += order.items[key].price;
+            }
+
             console.log(order)
+
             displayAllItems();
         })
     })
