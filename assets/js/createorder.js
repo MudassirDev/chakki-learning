@@ -219,15 +219,27 @@ function addToCart() {
         displayAllItems();
     }
 
-    addToDbForm.addEventListener('submit', e => {
+    addToDbForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         addToDbForm.style.display = "none";
         addToDbLoader.style.display = "block";
+        if ((order.orderAmount * 1) == 0) {alert("please add an item"); return;}
         const formData = new FormData(addToDbForm);
         const paidAmount = formData.get('paid_amount');
         order.paidAmount = (paidAmount * 1);
         order.remainingAmount = order.orderAmount - order.paidAmount;
-        console.log(order)
+
+        try {
+            const docRef = await firebase.addDoc(firebase.collection(firebase.db, "Orders"), {
+                order: order
+            });
+            console.log(docRef.id);
+        } catch (err) {
+            console.log(err)
+        }
+
+        addToDbForm.style.display = "block";
+        addToDbLoader.style.display = "none";
     })
 }
 
