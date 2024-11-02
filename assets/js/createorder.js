@@ -44,6 +44,7 @@ function addToCart() {
             for (const key in order.items) {
                 order.orderAmount += (order.items[key].amount * 1);
             }
+            console.log(order)
             addToDbForm.querySelector('.order_value').innerText = order.orderAmount;
             displayAllItems();
         })
