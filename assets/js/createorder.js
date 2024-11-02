@@ -157,6 +157,9 @@ function createOrder() {
 
 function addToCart() {
     const outcome = document.getElementById('outcome');
+    const addToDbForm = document.getElementById('add-to-db-form').querySelector('form');
+    const addToDbLoader = document.getElementById('add-to-db-form').querySelector('.loader');
+
     const order = {
         date: date,
         items: {},
@@ -164,7 +167,9 @@ function addToCart() {
         paidAmount: 0,
         remainingAmount: 0,
     };
+
     const allForms = document.getElementById('add-to-cart-forms').querySelectorAll('form');
+
     allForms.forEach(form => {
         form.addEventListener('submit', e => {
             e.preventDefault();
@@ -182,9 +187,7 @@ function addToCart() {
             };
 
             order.orderAmount = (order.orderAmount * 1) + (order.items[item].price * 1)
-
-            console.log(order)
-
+            addToDbForm.querySelector('.order_value').innerText = order.orderAmount;
             displayAllItems();
         })
     })
@@ -215,6 +218,17 @@ function addToCart() {
         delete order.items[item];
         displayAllItems();
     }
+
+    addToDbForm.addEventListener('submit', e => {
+        e.preventDefault();
+        addToDbForm.style.display = "none";
+        addToDbLoader.style.display = "block";
+        const formData = new FormData(addToDbForm);
+        const paidAmount = formData.get('paid_amount');
+        order.paidAmount = (paidAmount * 1);
+        order.remainingAmount = order.orderAmount - order.paidAmount;
+        console.log(order)
+    })
 }
 
 addToCart();
