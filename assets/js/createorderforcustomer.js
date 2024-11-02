@@ -118,10 +118,26 @@ function addToCart() {
         order.remainingAmount = order.orderAmount - order.paidAmount;
 
         try {
-            const docRef = await firebase.addDoc(firebase.collection(firebase.db, "Orders"), {
-                order: order
-            });
-            console.log(docRef.id);
+            // const docRef = await firebase.addDoc(firebase.collection(firebase.db, "Orders"), {
+            //     order: order
+            // });
+            // console.log(docRef.id);
+            const docRef = firebase.doc(firebase.db, "Customers", customerSelect.value.toLowerCase());
+            const docSnap = await firebase.getDoc(docRef);
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                const orders = data.orders;
+                const response = await fetch('https://www.uuidtools.com/api/generate/v1');
+                const uuid = await response.json();
+                order.id = uuid[0];
+                orders.push(order)
+                await firebase.setDoc(firebase.doc(firebase.db, "Customers", customerSelect.value.toLowerCase()), {
+                    orders: orders
+                });
+                console.log(orders)
+            } else {
+                console.log("No such document!");
+            }
         } catch (err) {
             console.log(err)
         }
