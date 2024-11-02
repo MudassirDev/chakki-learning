@@ -223,7 +223,14 @@ function addToCart() {
         e.preventDefault();
         addToDbForm.style.display = "none";
         addToDbLoader.style.display = "block";
-        if ((order.orderAmount * 1) == 0) {alert("please add an item"); return;}
+        if ((order.orderAmount * 1) == 0) {
+            addToDbForm.style.display = "block";
+            addToDbLoader.style.display = "none";
+            setTimeout(()=>{
+                alert("please add an item");
+            })
+            return;
+        }
         const formData = new FormData(addToDbForm);
         const paidAmount = formData.get('paid_amount');
         order.paidAmount = (paidAmount * 1);
