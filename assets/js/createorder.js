@@ -1,7 +1,3 @@
-// const customerSelect = document.getElementById('selectCustomer');
-// const createOrderForm = document.getElementById('create-order').querySelector('form');
-// const createOrderLoader = document.getElementById('create-order').querySelector('.loader');
-// const allItems = createOrderForm.querySelectorAll('.itemDiv');
 const date = getCurrentDate();
 
 function getCurrentDate() {
@@ -22,7 +18,6 @@ function addToCart() {
     const order = {
         date: date,
         items: {},
-        orderAmount: 0,
         paidAmount: 0,
         remainingAmount: 0,
     };
@@ -31,6 +26,7 @@ function addToCart() {
 
     allForms.forEach(form => {
         form.addEventListener('submit', e => {
+            order.orderAmount = 0;
             e.preventDefault();
             const formData = new FormData(form);
             const quantity = formData.get("quantity");
@@ -45,7 +41,9 @@ function addToCart() {
                 price
             };
 
-            order.orderAmount = (order.orderAmount * 1) + (order.items[item].price * 1)
+            for (const key in order.items) {
+                order.orderAmount += (order.items[key].amount * 1);
+            }
             addToDbForm.querySelector('.order_value').innerText = order.orderAmount;
             displayAllItems();
         })
