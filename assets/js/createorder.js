@@ -182,7 +182,7 @@ function addToCart() {
             };
 
             for (const key in order.items) {
-                order.orderAmount += order.items[key].price;
+                order.orderAmount = (order.orderAmount * 1) + (order.items[key].price * 1);
             }
 
             console.log(order)
