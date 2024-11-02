@@ -9,7 +9,6 @@ function getCurrentDate() {
     return `${day}-${month}-${year}`;
 }
 
-
 function addToCart() {
     const outcome = document.getElementById('outcome');
     const addToDbForm = document.getElementById('add-to-db-form').querySelector('form');
@@ -44,7 +43,6 @@ function addToCart() {
             for (const key in order.items) {
                 order.orderAmount += (order.items[key].price * 1);
             }
-            console.log(order)
             addToDbForm.querySelector('.order_value').innerText = `Total price of order: ${order.orderAmount}`;
             displayAllItems();
         })

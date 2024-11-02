@@ -22,64 +22,49 @@
         <option value="select" selected="true">Select</option>
     </select>
 
-    <div id="create-order">
-        <form style="display: none;">
-            <div class="itemDiv sada_ata">
-                <div class="itemDivAmount">
-                    <label for="sadaAtaAmount">Sada Ata - Amount</label>
-                    <input type="text" id="sadaAtaAmount" name="items[sada_ata][amount]">
-                </div>
-    
-                <div style="display: none;" class="itemDivPrice">
-                    <label for="sadaAtaPrice">Sada Ata - Price</label>
-                    <input type="number" id="sadaAtaPrice" name="items[sada_ata][price]">
-                </div>
-            </div>
-    
-            <div class="itemDiv chokar">
-                <div class="itemDivAmount">
-                    <label for="chokarAmount">Chokar - Amount</label>
-                    <input type="text" id="chokarAmount" name="items[chokar][amount]">
-                </div>
-    
-                <div style="display: none;" class="itemDivPrice">
-                    <label for="chokarPrice">Chokar - Price</label>
-                    <input type="number" id="chokarPrice" name="items[chokar][price]">
-                </div>
-            </div>
-    
-            <div class="itemDiv special_ata">
-                <div class="itemDivAmount">
-                    <label for="specialAtaAmount">Special Ata - Amount</label>
-                    <input type="text" id="specialAtaAmount" name="items[special_ata][amount]">
-                </div>
-    
-                <div style="display: none;" class="itemDivPrice">
-                    <label for="specialAtaPrice">Special Ata - Price</label>
-                    <input type="number" id="specialAtaPrice" name="items[special_ata][price]">
-                </div>
-            </div>
+    <div style="display: none;" id="main-add-to-cart-div" class="add-to-cart">
+        <div class="forms" id="add-to-cart-forms">
+            <form class="item" id="sada_ata">
+                <p>Sada-ata</p>
+                <input type="number" placeholder="Quantity" name="quantity" required>
+                <input type="text" placeholder="amount" name="amount" required>
+                <input type="number" placeholder="price" name="price" required>
+                <input type="submit" value="Add to Cart">
+            </form>
+            <form class="item" id="special_ata">
+                <p>Special-ata</p>
+                <input type="number" placeholder="Quantity" name="quantity" required>
+                <input type="text" placeholder="amount" name="amount" required>
+                <input type="number" placeholder="price" name="price" required>
+                <input type="submit" value="Add to Cart">
+            </form>
+            <form class="item" id="dara">
+                <p>dara</p>
+                <input type="number" placeholder="Quantity" name="quantity" required>
+                <input type="text" placeholder="amount" name="amount" required>
+                <input type="number" placeholder="price" name="price" required>
+                <input type="submit" value="Add to Cart">
+            </form>
+            <form class="item" id="chokar">
+                <p>chokar</p>
+                <input type="number" placeholder="Quantity" name="quantity" required>
+                <input type="text" placeholder="amount" name="amount" required>
+                <input type="number" placeholder="price" name="price" required>
+                <input type="submit" value="Add to Cart">
+            </form>
+        </div>
 
-            <div class="itemDiv dara">
-                <div class="itemDivAmount">
-                    <label for="daraAmount">Dara - Amount</label>
-                    <input type="text" id="daraAmount" name="items[dara][amount]">
-                </div>
-    
-                <div style="display: none;" class="itemDivPrice">
-                    <label for="daraPrice">Dara - Price</label>
-                    <input type="number" id="daraPrice" name="items[dara][price]">
-                </div>
-            </div>
-    
-            <div class="order-section">
-                <label for="paidAmount">Paid Amount</label>
-                <input type="number" id="paidAmount" name="paid_amount" required>
-            </div>
-    
-            <input type="submit" value="Create Order">
-        </form>
-        <div class="loader" style="display: none;"></div>
+        <div id="add-to-db-form">
+            <form>
+                <input type="number" name="paid_amount" placeholder="Paid amount" required>
+                <input type="submit" value="Create Order">
+                <p class="order_value"></p>
+            </form>
+            <div style="display: none;" class="loader"></div>
+        </div>
+
+        <div id="outcome">
+        </div>
     </div>
 
     <script type="module">
