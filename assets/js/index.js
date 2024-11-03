@@ -10,7 +10,7 @@ let intervalId = setInterval(()=>{
                 <nav id="navbar">
         <ul class="navbar-items flexbox-col">
             <li class="navbar-logo flexbox-left">
-                <a class="navbar-item-inner flexbox">
+                <a href="/chakki-learning" class="navbar-item-inner flexbox">
                     <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
                         viewBox="0 0 1438.88 1819.54">
                         <polygon points="925.79 318.48 830.56 0 183.51 1384.12 510.41 1178.46 925.79 318.48" />
@@ -20,7 +20,7 @@ let intervalId = setInterval(()=>{
                 </a>
             </li>
             <li class="navbar-item flexbox-left">
-                <a class="navbar-item-inner flexbox-left">
+                <a href="/chakki-learning" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <img src="assets/images/home.png" style="max-width: 35px;" alt="home icon" />
                     </div>
@@ -28,7 +28,7 @@ let intervalId = setInterval(()=>{
                 </a>
             </li>
             <li class="navbar-item flexbox-left">
-                <a class="navbar-item-inner flexbox-left">
+                <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <img src="assets/images/customer.png" style="max-width: 30px;" alt="customer icon" />
                     </div>
@@ -36,7 +36,7 @@ let intervalId = setInterval(()=>{
                 </a>
             </li>
             <li class="navbar-item flexbox-left">
-                <a class="navbar-item-inner flexbox-left">
+                <a href="/chakki-learning/pages/createorder.html" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <img src="assets/images/order.png" style="max-width: 35px;" alt="order icon">
                     </div>
@@ -44,7 +44,7 @@ let intervalId = setInterval(()=>{
                 </a>
             </li>
             <li class="navbar-item flexbox-left">
-                <a class="navbar-item-inner flexbox-left">
+                <a class="navbar-item-inner flexbox-left" id="logoutBtn">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <img src="assets/images/logout.png" style="max-width: 35px;" alt="logout icon">
                     </div>
