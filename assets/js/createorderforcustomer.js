@@ -118,10 +118,6 @@ function addToCart() {
         order.remainingAmount = order.orderAmount - order.paidAmount;
 
         try {
-            // const docRef = await firebase.addDoc(firebase.collection(firebase.db, "Orders"), {
-            //     order: order
-            // });
-            // console.log(docRef.id);
             const docRef = firebase.doc(firebase.db, "Customers", customerSelect.value.toLowerCase());
             const docSnap = await firebase.getDoc(docRef);
             if (docSnap.exists()) {
