@@ -151,9 +151,8 @@ window.getData = async () => {
             const data = item.data();
             const customer = item.id;
             if (data.orders.length > 0) {
-                for (let i = 0; i < data.orders; i++) {
+                for (let i = 0; i < data.orders.length; i++) {
                     const order = data.orders[i];
-                    console.log(order)
                     const row = `
                     <div class="row">
                         <p><span class="label">NO.</span> ${i + 1}</p>
