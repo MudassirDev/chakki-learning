@@ -1,13 +1,6 @@
 const app = document.getElementById('application');
-
-let intervalId = setInterval(()=>{
-    if (window.userLoggedIn != undefined) {
-        clearInterval(intervalId);
-        intervalId = null;
-        
-        if (window.userLoggedIn == true) {
-            app.innerHTML = `
-                <nav id="navbar">
+const html = `
+    <nav id="navbar">
         <ul class="navbar-items flexbox-col">
             <li class="navbar-logo flexbox-left">
                 <a href="/chakki-learning" class="navbar-item-inner flexbox">
@@ -61,16 +54,71 @@ let intervalId = setInterval(()=>{
             </li>
         </ul>
     </nav>
-            `;
-            const logoutBtn = document.getElementById('logoutBtn');
-  
-            logoutBtn.addEventListener('click', function() {
-                firebase.signOut(firebase.auth).then(() => {
-                    window.location.href = '/chakki-learning/';
-                  }).catch((error) => {
-                    console.log(error)
-                  });
-            });
+    <div id="main">
+        <div class="total-details">
+            <div class="container">
+                <div class="header">
+                    <h6>Total Orders</h6>
+                </div>
+                <div class="body">
+                </div>
+            </div>
+            <div class="container">
+                <div class="header">
+                    <h6>Total Customers</h6>
+                </div>
+                <div class="body"></div>
+            </div>
+        </div>
+
+        <div class="complete-data">
+            
+            <div class="data-controls">
+                <button id="filter-button" class="filter-button">Filter</button>
+            </div>
+            <div class="data-table">
+                <div class="row head">
+                    <p>NO.</p>
+                    <p>Order ID</p>
+                    <p>Customer</p>
+                    <p>Order Amount</p>
+                    <p>Paid Amount</p>
+                    <p>Remaining Amount</p>
+                    <p>Action</p>
+                </div>
+                <div class="row">
+                    <p><span class="label">NO.</span> 1</p>
+                    <p><span class="label">Order ID</span> #12345</p>
+                    <p><span class="label">Customer</span> John Doe</p>
+                    <p><span class="label">Order Amount</span> $100.00</p>
+                    <p><span class="label">Paid Amount</span> $80.00</p>
+                    <p><span class="label">Remaining Amount</span> $20.00</p>
+                    <p><span class="label">Action</span> <button>View More</button></p>
+                </div>
+                <div class="row">
+                    <p><span class="label">NO.</span> 1</p>
+                    <p><span class="label">Order ID</span> #12345</p>
+                    <p><span class="label">Customer</span> John Doe</p>
+                    <p><span class="label">Order Amount</span> $100.00</p>
+                    <p><span class="label">Paid Amount</span> $80.00</p>
+                    <p><span class="label">Remaining Amount</span> $20.00</p>
+                    <p><span class="label">Action</span> <button>View More</button></p>
+                </div>
+            </div>
+
+        </div>
+        <div class="filter-sidebar">
+        </div>
+    </div>
+`
+
+let intervalId = setInterval(() => {
+    if (window.userLoggedIn != undefined) {
+        clearInterval(intervalId);
+        intervalId = null;
+
+        if (window.userLoggedIn == true) {
+            app.innerHTML = html;
 
             getData();
         } else {
@@ -87,5 +135,32 @@ let intervalId = setInterval(()=>{
 
 async function getData() {
     const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
-    querySnapshot.forEach(item => {console.log(item.data())})
+    querySnapshot.forEach(item => { console.log(item.data()) })
+}
+
+function init() {
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    logoutBtn.addEventListener('click', function () {
+        firebase.signOut(firebase.auth).then(() => {
+            window.location.href = '/chakki-learning/';
+        }).catch((error) => {
+            console.log(error)
+        });
+    });
+
+    const filterBtn = document.getElementById('filter-button');
+    const filterSidebar = document.querySelector('.filter-sidebar');
+    const mainDiv = document.getElementById('main');
+
+    filterBtn.addEventListener('click', () => {
+        filterSidebar.style.transform = "translate(0px)";
+    })
+    mainDiv.addEventListener('click', (e) => { hideFilter(e.target) })
+
+    function hideFilter(e) {
+        if (e.id != "filter-button" && !filterSidebar.contains(e)) {
+            filterSidebar.style.transform = "translate(-400px)";
+        }
+    }
 }

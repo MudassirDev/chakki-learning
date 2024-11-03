@@ -290,6 +290,7 @@ Navbar
     transition: width .35s cubic-bezier(var(--transition-main), 1);
     overflow-y: auto;
     overflow-x: hidden;
+    z-index: 1;
 }
 
 #navbar:hover {
@@ -390,7 +391,8 @@ Main
 
 #main {
     margin: 0 0 0 5em;
-    min-height: 150vh;
+    padding: 20px;
+    min-height: 100vh;
 }
 
 #main>h2 {
