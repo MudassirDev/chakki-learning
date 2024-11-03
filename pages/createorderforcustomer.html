@@ -57,53 +57,55 @@
         </ul>
     </nav>
 
-    <label for="selectCustomer">Select Customer: </label>
-    <select name="customers" id="selectCustomer">
-        <option value="select" selected="true">Select</option>
-    </select>
-
-    <div style="display: none;" id="main-add-to-cart-div" class="add-to-cart">
-        <div class="forms" id="add-to-cart-forms">
-            <form class="item" id="sada_ata">
-                <p>Sada-ata</p>
-                <input type="number" placeholder="Quantity" name="quantity" required>
-                <input type="text" placeholder="amount" name="amount" required>
-                <input type="number" placeholder="price" name="price" required>
-                <input type="submit" value="Add to Cart">
-            </form>
-            <form class="item" id="special_ata">
-                <p>Special-ata</p>
-                <input type="number" placeholder="Quantity" name="quantity" required>
-                <input type="text" placeholder="amount" name="amount" required>
-                <input type="number" placeholder="price" name="price" required>
-                <input type="submit" value="Add to Cart">
-            </form>
-            <form class="item" id="dara">
-                <p>dara</p>
-                <input type="number" placeholder="Quantity" name="quantity" required>
-                <input type="text" placeholder="amount" name="amount" required>
-                <input type="number" placeholder="price" name="price" required>
-                <input type="submit" value="Add to Cart">
-            </form>
-            <form class="item" id="chokar">
-                <p>chokar</p>
-                <input type="number" placeholder="Quantity" name="quantity" required>
-                <input type="text" placeholder="amount" name="amount" required>
-                <input type="number" placeholder="price" name="price" required>
-                <input type="submit" value="Add to Cart">
-            </form>
-        </div>
-
-        <div id="add-to-db-form">
-            <form>
-                <input type="number" name="paid_amount" placeholder="Paid amount" required>
-                <input type="submit" value="Create Order">
-                <p class="order_value"></p>
-            </form>
-            <div style="display: none;" class="loader"></div>
-        </div>
-
-        <div id="outcome">
+    <div id="main">
+        <label for="selectCustomer">Select Customer: </label>
+        <select name="customers" id="selectCustomer">
+            <option value="select" selected="true">Select</option>
+        </select>
+    
+        <div style="display: none;" id="main-add-to-cart-div" class="add-to-cart">
+            <div class="forms" id="add-to-cart-forms">
+                <form class="item" id="sada_ata">
+                    <p>Sada-ata</p>
+                    <input type="number" placeholder="Quantity" name="quantity" required>
+                    <input type="text" placeholder="amount" name="amount" required>
+                    <input type="number" placeholder="price" name="price" required>
+                    <input type="submit" value="Add to Cart">
+                </form>
+                <form class="item" id="special_ata">
+                    <p>Special-ata</p>
+                    <input type="number" placeholder="Quantity" name="quantity" required>
+                    <input type="text" placeholder="amount" name="amount" required>
+                    <input type="number" placeholder="price" name="price" required>
+                    <input type="submit" value="Add to Cart">
+                </form>
+                <form class="item" id="dara">
+                    <p>dara</p>
+                    <input type="number" placeholder="Quantity" name="quantity" required>
+                    <input type="text" placeholder="amount" name="amount" required>
+                    <input type="number" placeholder="price" name="price" required>
+                    <input type="submit" value="Add to Cart">
+                </form>
+                <form class="item" id="chokar">
+                    <p>chokar</p>
+                    <input type="number" placeholder="Quantity" name="quantity" required>
+                    <input type="text" placeholder="amount" name="amount" required>
+                    <input type="number" placeholder="price" name="price" required>
+                    <input type="submit" value="Add to Cart">
+                </form>
+            </div>
+    
+            <div id="add-to-db-form">
+                <form>
+                    <input type="number" name="paid_amount" placeholder="Paid amount" required>
+                    <input type="submit" value="Create Order">
+                    <p class="order_value"></p>
+                </form>
+                <div style="display: none;" class="loader"></div>
+            </div>
+    
+            <div id="outcome">
+            </div>
         </div>
     </div>
 
