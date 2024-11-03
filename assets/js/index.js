@@ -86,24 +86,6 @@ const html = `
                     <p>Remaining Amount</p>
                     <p>Action</p>
                 </div>
-                <div class="row">
-                    <p><span class="label">NO.</span> 1</p>
-                    <p><span class="label">Order ID</span> #12345</p>
-                    <p><span class="label">Customer</span> John Doe</p>
-                    <p><span class="label">Order Amount</span> $100.00</p>
-                    <p><span class="label">Paid Amount</span> $80.00</p>
-                    <p><span class="label">Remaining Amount</span> $20.00</p>
-                    <p><span class="label">Action</span> <button>View More</button></p>
-                </div>
-                <div class="row">
-                    <p><span class="label">NO.</span> 1</p>
-                    <p><span class="label">Order ID</span> #12345</p>
-                    <p><span class="label">Customer</span> John Doe</p>
-                    <p><span class="label">Order Amount</span> $100.00</p>
-                    <p><span class="label">Paid Amount</span> $80.00</p>
-                    <p><span class="label">Remaining Amount</span> $20.00</p>
-                    <p><span class="label">Action</span> <button>View More</button></p>
-                </div>
             </div>
 
         </div>
@@ -169,10 +151,11 @@ async function getData() {
             const data = item.data();
             const customer = item.id;
             if (data.orders.length > 0) {
-                for (const order of data.orders) {
+                for (let i = 0; i < data.orders; i++) {
+                    const order = data.orders[i];
                     const row = `
                     <div class="row">
-                        <p><span class="label">NO.</span> 1</p>
+                        <p><span class="label">NO.</span> ${i + 1}</p>
                         <p><span class="label">Order ID</span> ${order.id}</p>
                         <p><span class="label">Customer</span> ${customer.toUpperCase()}</p>
                         <p><span class="label">Order Amount</span> ${order.orderAmount}</p>
