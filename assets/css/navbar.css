@@ -42,7 +42,7 @@ body {
     width: 100%;
     color: hsl(var(--text-primary));
     font-family: var(--font-main);
-    background-color: rgb(36, 39, 40);
+    background-color: hsl(255, 10.5%, 7.5%);
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
     box-sizing: border-box;
