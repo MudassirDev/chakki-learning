@@ -121,6 +121,7 @@ let intervalId = setInterval(() => {
             app.innerHTML = html;
 
             init();
+            getData();
         } else {
             app.innerHTML = `
             <ul>
@@ -134,7 +135,6 @@ let intervalId = setInterval(() => {
 
 
 function init() {
-    const dataTable = document.querySelector('.complete-data .data-table');
     const logoutBtn = document.getElementById('logoutBtn');
 
     logoutBtn.addEventListener('click', function () {
@@ -162,6 +162,7 @@ function init() {
 }
 
 async function getData() {
+    const dataTable = document.querySelector('.complete-data .data-table');
     try {
         const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
         querySnapshot.forEach(item => {
