@@ -143,7 +143,7 @@ function init() {
     }
 }
 
-async function getData() {
+window.getData = async () => {
     const dataTable = document.querySelector('.complete-data .data-table');
     try {
         const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
@@ -153,6 +153,7 @@ async function getData() {
             if (data.orders.length > 0) {
                 for (let i = 0; i < data.orders; i++) {
                     const order = data.orders[i];
+                    console.log(order)
                     const row = `
                     <div class="row">
                         <p><span class="label">NO.</span> ${i + 1}</p>
