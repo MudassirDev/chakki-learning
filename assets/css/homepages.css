@@ -1,0 +1,145 @@
+.total-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    position: sticky;
+    top: -20px;
+}
+
+.total-details .container {
+    flex-grow: 1;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: hsl(var(--background-secondary));
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.total-details .container:hover {
+    box-shadow: 0px 0px 10px white;
+    scale: 1.01;
+}
+
+.complete-data {
+    padding-top: 50px;
+}
+
+.complete-data .data-table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #353535;
+}
+
+.complete-data .data-table .row {
+    display: grid;
+    grid-template-columns: 100px repeat(5, 1fr) 150px;
+    align-items: center;
+    border-bottom: 1px solid #353535;
+    padding: 8px;
+}
+
+.complete-data .data-table .row p {
+    border-right: 1px solid #353535;
+    padding: 8px;
+}
+
+.complete-data .data-table .row p:last-child {
+    border-right: none;
+}
+
+.complete-data .data-table .row p .label {
+    display: none;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .complete-data .data-table .row.head {
+        display: none;
+    }
+
+    .complete-data .data-table .row {
+        grid-template-columns: 1fr;
+        font-size: 14px;
+    }
+
+    .complete-data .data-table .row p {
+        padding: 4px;
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 768px) {
+    .complete-data .data-table .row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px;
+        border-bottom: 1px solid #353535;
+    }
+
+    .complete-data .data-table .row p {
+        display: flex;
+        width: 100%;
+        padding: 4px 0;
+        border-bottom: 1px solid #353535;
+        justify-content: space-between;
+    }
+
+    .complete-data .data-table .row p .label {
+        display: inline;
+        font-weight: bold;
+        color: #999;
+    }
+
+    .complete-data .data-table .row p:last-child {
+        border-bottom: none;
+    }
+
+    .complete-data .data-table .row p:last-child button {
+        margin-left: auto;
+    }
+}
+
+.filter-sidebar {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: black;
+    width: 400px;
+    z-index: 2;
+    transform: translate(-400px);
+    transition: all .2s;
+}
+
+.complete-data .data-controls {
+    display: flex;
+    justify-content: start;
+    padding-bottom: 10px;
+}
+
+.filter-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    transition: all .2s;
+}
+
+.filter-button:active,
+.filter-button:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.filter-button:hover {
+    background-color: #0056b3;
+}
