@@ -156,7 +156,7 @@ async function getData() {
                     const row = `
                     <div class="row">
                         <p><span class="label">NO.</span> ${i + 1}</p>
-                        <p><span class="label">Order ID</span> ${order.id}</p>
+                        <p><span class="label">Order ID</span> ${order.id.slice(0, 3)}...${order.id.slice(-3)}</p>
                         <p><span class="label">Customer</span> ${customer.toUpperCase()}</p>
                         <p><span class="label">Order Amount</span> ${order.orderAmount}</p>
                         <p><span class="label">Paid Amount</span> ${order.paidAmount}</p>
