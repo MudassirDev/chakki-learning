@@ -157,7 +157,7 @@ window.getData = async () => {
                     <div class="row">
                         <p><span class="label">NO.</span> ${i + 1}</p>
                         <p><span class="label">Order ID</span> ${order.id.slice(0, 3)}...${order.id.slice(-3)}</p>
-                        <p><span class="label">Customer</span> ${customer.toUpperCase()}</p>
+                        <p><span class="label">Customer</span> ${capitalizeWords(customer)}</p>
                         <p><span class="label">Order Amount</span> ${order.orderAmount}</p>
                         <p><span class="label">Paid Amount</span> ${order.paidAmount}</p>
                         <p><span class="label">Remaining Amount</span> ${order.remainingAmount}</p>
@@ -171,4 +171,8 @@ window.getData = async () => {
     } catch (error) {
         console.log(error)
     }
+}
+
+function capitalizeWords(str) {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
 }
