@@ -143,7 +143,7 @@ function init() {
     }
 }
 
-window.getData = async () => {
+async function getData () {
     const dataTable = document.querySelector('.complete-data .data-table');
     try {
         const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
