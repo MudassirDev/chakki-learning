@@ -120,6 +120,7 @@ let intervalId = setInterval(() => {
         if (window.userLoggedIn == true) {
             app.innerHTML = html;
 
+            init();
             getData();
         } else {
             app.innerHTML = `
