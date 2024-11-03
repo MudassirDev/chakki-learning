@@ -171,6 +171,36 @@ window.getData = async () => {
     } catch (error) {
         console.log(error)
     }
+
+    try {
+        const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Orders"));
+        let index = 0;
+        querySnapshot.forEach(item => {
+            index += 1;
+            const order = item.data().order;
+            const orderId = item.id;
+            const row = `
+                    <div class="row">
+                        <p><span class="label">NO.</span> ${index}</p>
+                        <p><span class="label">Order ID</span> ${orderId.slice(0, 3)}...${orderId.slice(-3)}</p>
+                        <p><span class="label">Customer</span> -</p>
+                        <p><span class="label">Order Amount</span> ${order.orderAmount}</p>
+                        <p><span class="label">Paid Amount</span> ${order.paidAmount}</p>
+                        <p><span class="label">Remaining Amount</span> ${order.remainingAmount}</p>
+                        <p><span class="label">Action</span> <button>View More</button></p>
+                    </div>
+                    `
+            dataTable.insertAdjacentHTML("beforeend", row);
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
+    const copyTable = [...document.querySelector('.complete-data .data-table').querySelectorAll('.row')];
+    copyTable.shift();
+    copyTable.forEach((item, index) => {
+        item.querySelector('p').innerHTML = `<p><span class="label">NO.</span> ${index + 1}</p>`
+    })
 }
 
 function capitalizeWords(str) {
