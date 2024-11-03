@@ -113,9 +113,9 @@ a {
     text-decoration: underline;
 }
 
-a:visited {
+/* a:visited {
     color: hsla(var(--primary), .5);
-}
+} */
 
 /* =========
 Buttons
