@@ -15,7 +15,7 @@ const html = `
             <li class="navbar-item flexbox-left">
                 <a href="/chakki-learning" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="assets/images/home.png" style="max-width: 35px;" alt="home icon" />
+                        <img src="/chakki-learning/assets/images/home.png" style="max-width: 35px;" alt="home icon" />
                     </div>
                     <span class="link-text">Home</span>
                 </a>
@@ -23,7 +23,7 @@ const html = `
             <li class="navbar-item flexbox-left">
                 <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="assets/images/customer.png" style="max-width: 30px;" alt="customer icon" />
+                        <img src="/chakki-learning/assets/images/customer.png" style="max-width: 30px;" alt="customer icon" />
                     </div>
                     <span class="link-text">Create Customer</span>
                 </a>
@@ -31,7 +31,7 @@ const html = `
             <li class="navbar-item flexbox-left">
                 <a href="/chakki-learning/pages/createorder.html" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="assets/images/order.png" style="max-width: 35px;" alt="order icon">
+                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
                     </div>
                     <span class="link-text">Create Order</span>
                 </a>
@@ -39,7 +39,7 @@ const html = `
             <li class="navbar-item flexbox-left">
                 <a href="/chakki-learning/pages/createorderforcustomer.html" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="assets/images/order.png" style="max-width: 35px;" alt="order icon">
+                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
                     </div>
                     <span class="link-text">Create Order (For Customer)</span>
                 </a>
@@ -47,7 +47,7 @@ const html = `
             <li class="navbar-item flexbox-left">
                 <a class="navbar-item-inner flexbox-left" id="logoutBtn">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="assets/images/logout.png" style="max-width: 35px;" alt="logout icon">
+                        <img src="/chakki-learning/assets/images/logout.png" style="max-width: 35px;" alt="logout icon">
                     </div>
                     <span class="link-text">Logout</span>
                 </a>
