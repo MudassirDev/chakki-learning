@@ -60,14 +60,13 @@ const html = `
                 <div class="header">
                     <h6>Total Orders</h6>
                 </div>
-                <div class="body">
-                </div>
+                <div class="body"><p id="total-orders"></p></div>
             </div>
             <div class="container">
                 <div class="header">
                     <h6>Total Customers</h6>
                 </div>
-                <div class="body"></div>
+                <div class="body"><p id="total-customers"></p></div>
             </div>
         </div>
 
@@ -145,13 +144,16 @@ function init() {
 
 async function getData () {
     const dataTable = document.querySelector('.complete-data .data-table');
+    let totalCustomer = 0;
+    let totalOrder = 0;
     try {
         const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
         querySnapshot.forEach(item => {
+            totalCustomer += 1;
             const data = item.data();
             const customer = item.id;
-            if (data.orders.length > 0) {
                 for (let i = 0; i < data.orders.length; i++) {
+                    totalOrder += 1;
                     const order = data.orders[i];
                     const row = `
                     <div class="row">
@@ -166,7 +168,6 @@ async function getData () {
                     `
                     dataTable.insertAdjacentHTML("beforeend", row);
                 }
-            }
         })
     } catch (error) {
         console.log(error)
@@ -176,6 +177,7 @@ async function getData () {
         const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Orders"));
         let index = 0;
         querySnapshot.forEach(item => {
+            totalOrder += 1;
             index += 1;
             const order = item.data().order;
             const orderId = item.id;
@@ -201,6 +203,9 @@ async function getData () {
     copyTable.forEach((item, index) => {
         item.querySelector('p').innerHTML = `<p><span class="label">NO.</span> ${index + 1}</p>`
     })
+
+    document.getElementById('total-customers').innerHTML = totalCustomer;
+    document.getElementById('total-orders').innerHTML = totalOrder;
 }
 
 function capitalizeWords(str) {
