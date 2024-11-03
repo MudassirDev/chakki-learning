@@ -167,7 +167,7 @@ async function getData() {
         const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
         querySnapshot.forEach(item => {
             const data = item.data();
-            const customer = item.id();
+            const customer = item.id;
             if (data.orders.length > 0) {
                 for (const order of data.orders) {
                     const row = `
