@@ -121,7 +121,6 @@ let intervalId = setInterval(() => {
             app.innerHTML = html;
 
             init();
-            getData();
         } else {
             app.innerHTML = `
             <ul>
@@ -134,12 +133,8 @@ let intervalId = setInterval(() => {
 }, 100);
 
 
-async function getData() {
-    const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
-    querySnapshot.forEach(item => { console.log(item.data()) })
-}
-
 function init() {
+    const dataTable = document.querySelector('.complete-data .data-table');
     const logoutBtn = document.getElementById('logoutBtn');
 
     logoutBtn.addEventListener('click', function () {
@@ -163,5 +158,32 @@ function init() {
         if (e.id != "filter-button" && !filterSidebar.contains(e)) {
             filterSidebar.style.transform = "translate(-400px)";
         }
+    }
+}
+
+async function getData() {
+    try {
+        const querySnapshot = await firebase.getDocs(firebase.collection(firebase.db, "Customers"));
+        querySnapshot.forEach(item => {
+            const data = item.data();
+            const customer = item.id();
+            if (data.orders.length > 0) {
+                for (const order of data.orders) {
+                    const row = `
+                    <div class="row">
+                        <p><span class="label">NO.</span> 1</p>
+                        <p><span class="label">Order ID</span> ${order.id}</p>
+                        <p><span class="label">Customer</span> ${customer.toUpperCase()}</p>
+                        <p><span class="label">Order Amount</span> ${order.orderAmount}</p>
+                        <p><span class="label">Paid Amount</span> ${order.paidAmount}</p>
+                        <p><span class="label">Remaining Amount</span> ${order.remainingAmount}</p>
+                        <p><span class="label">Action</span> <button>View More</button></p>
+                    </div>
+                    `
+                    dataTable.insertAdjacentHTML("beforeend", row);
+                }
+            }
+        })
+    } catch (error) {
     }
 }
