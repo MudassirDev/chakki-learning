@@ -158,9 +158,9 @@ async function getData () {
                         <p><span class="label">NO.</span> ${i + 1}</p>
                         <p><span class="label">Order ID</span> ${order.id.slice(0, 3)}...${order.id.slice(-3)}</p>
                         <p><span class="label">Customer</span> ${capitalizeWords(customer)}</p>
-                        <p><span class="label">Order Amount</span> ${order.orderAmount}</p>
-                        <p><span class="label">Paid Amount</span> ${order.paidAmount}</p>
-                        <p><span class="label">Remaining Amount</span> ${order.remainingAmount}</p>
+                        <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
+                        <p><span class="label">Paid Amount</span> ${order.paidAmount.toLocaleString()}</p>
+                        <p><span class="label">Remaining Amount</span> ${order.remainingAmount.toLocaleString()}</p>
                         <p><span class="label">Action</span> <button>View More</button></p>
                     </div>
                     `
@@ -184,9 +184,9 @@ async function getData () {
                         <p><span class="label">NO.</span> ${index}</p>
                         <p><span class="label">Order ID</span> ${orderId.slice(0, 3)}...${orderId.slice(-3)}</p>
                         <p><span class="label">Customer</span> -</p>
-                        <p><span class="label">Order Amount</span> ${order.orderAmount}</p>
-                        <p><span class="label">Paid Amount</span> ${order.paidAmount}</p>
-                        <p><span class="label">Remaining Amount</span> ${order.remainingAmount}</p>
+                        <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
+                        <p><span class="label">Paid Amount</span> ${order.paidAmount.toLocaleString()}</p>
+                        <p><span class="label">Remaining Amount</span> ${order.remainingAmount.toLocaleString()}</p>
                         <p><span class="label">Action</span> <button>View More</button></p>
                     </div>
                     `
