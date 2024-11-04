@@ -101,6 +101,8 @@ let intervalId = setInterval(() => {
         if (window.userLoggedIn == true) {
             app.innerHTML = html;
 
+            console.log(user)
+
             init();
             getData();
         } else {
