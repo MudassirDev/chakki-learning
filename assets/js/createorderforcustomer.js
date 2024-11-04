@@ -54,7 +54,7 @@ function addToCart() {
             e.preventDefault();
             const formData = new FormData(form);
             const quantity = formData.get("quantity");
-            const amount = formData.get("amount");
+            const amount = `${formData.get("amount")}${formData.get("unit")}`;
             const price = formData.get("price");
 
             const item = `${form.getAttribute('id')}-${amount}`;
