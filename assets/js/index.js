@@ -102,10 +102,19 @@ let intervalId = setInterval(() => {
             app.innerHTML = html;
 
             if (user.email == "user@test.com") {
-                console.log("Admin Acc");
+                console.log("User Acc");
             } else {
-                console.log("User Acc")
+                console.log("Admin Acc")
             }
+
+            firebase.updateProfile(firebase.auth.currentUser, {
+                displayName: "Admin"
+             }).then(() => {
+                console.log("Updated!")
+            }).catch((error) => {
+                console.log(error)
+            });
+
             init();
             getData();
         } else {
