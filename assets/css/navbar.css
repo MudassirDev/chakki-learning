@@ -150,7 +150,7 @@ form {
     margin: 0;
 }
 
-fieldset {
+/* fieldset {
     margin: 0;
     padding: .5em 0;
     border: none;
@@ -176,9 +176,9 @@ textarea {
 input,
 textarea {
     transition: all .2s ease-in-out;
-}
+} */
 
-input:hover,
+/* input:hover,
 input:focus,
 textarea:hover,
 textarea:focus {
@@ -186,14 +186,14 @@ textarea:focus {
         0 0 0 2px hsl(var(--black)),
         0 0 0 3px hsl(var(--white));
     border: 2px solid transparent;
-}
+} */
 
-select {
+/* select {
     padding: .8em 1.2em;
     border: 1px solid hsl(var(--black));
     font-size: var(--paragraph);
     outline: none;
-}
+} */
 
 /* =========
 Classes
