@@ -101,6 +101,11 @@ let intervalId = setInterval(() => {
         if (window.userLoggedIn == true) {
             app.innerHTML = html;
 
+            if (user.email == "user@test.com") {
+                console.log("Admin Acc");
+            } else {
+                console.log("User Acc")
+            }
             init();
             getData();
         } else {
