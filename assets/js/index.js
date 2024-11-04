@@ -77,7 +77,7 @@ let intervalId = setInterval(() => {
         if (window.userLoggedIn == true) {
             app.innerHTML = html;
 
-            if (user?.displayName.toLowerCase() == "admin") {
+            if (user?.displayName?.toLowerCase() == "admin") {
                 document.getElementById('home-item').insertAdjacentHTML('afterend', `
                                 <li class="navbar-item flexbox-left">
                 <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
