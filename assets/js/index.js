@@ -12,36 +12,12 @@ const html = `
                     </svg>
                 </a>
             </li>
-            <li class="navbar-item flexbox-left">
+            <li class="navbar-item flexbox-left" id="home-item">
                 <a href="/chakki-learning" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <img src="/chakki-learning/assets/images/home.png" style="max-width: 35px;" alt="home icon" />
                     </div>
                     <span class="link-text">Home</span>
-                </a>
-            </li>
-            <li class="navbar-item flexbox-left">
-                <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
-                    <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="/chakki-learning/assets/images/customer.png" style="max-width: 30px;" alt="customer icon" />
-                    </div>
-                    <span class="link-text">Create Customer</span>
-                </a>
-            </li>
-            <li class="navbar-item flexbox-left">
-                <a href="/chakki-learning/pages/createorder.html" class="navbar-item-inner flexbox-left">
-                    <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
-                    </div>
-                    <span class="link-text">Create Order</span>
-                </a>
-            </li>
-            <li class="navbar-item flexbox-left">
-                <a href="/chakki-learning/pages/createorderforcustomer.html" class="navbar-item-inner flexbox-left">
-                    <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
-                    </div>
-                    <span class="link-text">Create Order (For Customer)</span>
                 </a>
             </li>
             <li class="navbar-item flexbox-left">
@@ -101,7 +77,34 @@ let intervalId = setInterval(() => {
         if (window.userLoggedIn == true) {
             app.innerHTML = html;
 
-            console.log(user.displayName)
+            if (user.displayName.toLowerCase() == "admin") {
+                document.getElementById('home-item').insertAdjacentHTML('afterend', `
+                                <li class="navbar-item flexbox-left">
+                <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
+                    <div class="navbar-item-inner-icon-wrapper flexbox">
+                        <img src="/chakki-learning/assets/images/customer.png" style="max-width: 30px;" alt="customer icon" />
+                    </div>
+                    <span class="link-text">Create Customer</span>
+                </a>
+            </li>
+            <li class="navbar-item flexbox-left">
+                <a href="/chakki-learning/pages/createorder.html" class="navbar-item-inner flexbox-left">
+                    <div class="navbar-item-inner-icon-wrapper flexbox">
+                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
+                    </div>
+                    <span class="link-text">Create Order</span>
+                </a>
+            </li>
+            <li class="navbar-item flexbox-left">
+                <a href="/chakki-learning/pages/createorderforcustomer.html" class="navbar-item-inner flexbox-left">
+                    <div class="navbar-item-inner-icon-wrapper flexbox">
+                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
+                    </div>
+                    <span class="link-text">Create Order (For Customer)</span>
+                </a>
+            </li>
+                    `)
+            }
 
             init();
             getData();
