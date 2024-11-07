@@ -210,9 +210,6 @@ async function getData () {
                     dataTable.insertAdjacentHTML("beforeend", row);
                 }
         })
-        setTimeout(()=>{
-            initializeFilters();
-        })
     } catch (error) {
         console.log(error)
     }
@@ -250,6 +247,7 @@ async function getData () {
 
     document.getElementById('total-customers').innerHTML = totalCustomer;
     document.getElementById('total-orders').innerHTML = totalOrder;
+    initializeFilters();
 }
 
 function capitalizeWords(str) {
