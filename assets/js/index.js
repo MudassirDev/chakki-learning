@@ -65,6 +65,42 @@ const html = `
 
         </div>
         <div class="filter-sidebar">
+            <div class="head">
+                <p>Filters</p>
+                <p>Remove all filters</p>
+            </div>
+            <div class="body">
+                <div class="category">
+                    <p class="label">Orders</p>
+                    <div class="filters">
+                        <div class="filter">
+                            <input type="checkbox" name="customer-orders" id="customer-orders">
+                            <label for="customer-orders">Customer Orders</label>
+                        </div>
+                        <div class="filter">
+                            <input type="checkbox" name="other-orders" id="other-orders">
+                            <label for="other-orders">Other Orders</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <p class="label">Date</p>
+                    <div class="filters">
+                        <div class="filter timeline">
+                            <input type="date">to<input type="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <p class="label">Customers</p>
+                    <div class="filters">
+                        <div class="filter customerFilter">
+                            <input type="checkbox" name="alsan" id="alsan">
+                            <label for="alsan">Alsan</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 `
@@ -145,6 +181,8 @@ function init() {
             filterSidebar.style.transform = "translate(-400px)";
         }
     }
+
+    initializeFilters();
 }
 
 async function getData () {
@@ -215,4 +253,66 @@ async function getData () {
 
 function capitalizeWords(str) {
     return str.replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+
+function initializeFilters() {
+    const allFilters = document.querySelectorAll('.filter');
+    const allOrders = document.querySelectorAll('.row:not(:first-child)');
+    const customerOrderFilter = document.getElementById('customer-orders');
+    const otherOrderFilter = document.getElementById('other-orders');
+    const allCustomerFilters = [...document.querySelectorAll('.customerFilter')];
+
+    const isShowCustomerOrder = () => { return customerOrderFilter.checked };
+    const isShowOtherOrder = () => { return otherOrderFilter.checked };
+
+    document.querySelectorAll('.filter-sidebar .body .category').forEach(category => {
+        category.querySelector('.label').addEventListener('click', function () {
+            const filters = category.querySelector('.filters');
+            const style = window.getComputedStyle(filters);
+            if (style.height == "0px") {
+                filters.style.height = "auto";
+                filters.style.transform = "translate(0px, 0px)";
+            } else {
+                filters.style.height = "0px";
+                filters.style.transform = "translate(-100vw, 0px)";
+            }
+        })
+    })
+
+    allFilters.forEach(filter => {
+        const input = filter.querySelector('input');
+        if (input.getAttribute('type') == "checkbox") {
+            input.addEventListener('change', () => {
+                applyFilters();
+            })
+        }
+    })
+
+    function applyFilters() {
+        allOrders.forEach(row => {
+            row.classList.add('hide');
+            const customerName = row.querySelector('[name="customer"]').innerHTML.toLowerCase();
+
+            if (isShowCustomerOrder() && customerName != "-") {
+
+                if (allCustomerFilters.every(filter => filter.querySelector('input').checked == false)) {
+                    row.classList.remove('hide');
+                } else {
+                    allCustomerFilters.forEach(filter => {
+                        if (filter.querySelector('input').checked) {
+                            if (filter.querySelector('label').innerText.trim().toLowerCase() == customerName) {
+                                row.classList.remove('hide')
+                            }
+                        }
+                    })
+                }
+
+            };
+
+            if (isShowOtherOrder() && customerName == "-") row.classList.remove('hide');
+
+            if (!isShowCustomerOrder() && !isShowOtherOrder()) row.classList.remove('hide');
+        })
+    }
 }
