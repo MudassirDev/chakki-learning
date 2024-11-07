@@ -181,8 +181,6 @@ function init() {
             filterSidebar.style.transform = "translate(-400px)";
         }
     }
-
-    initializeFilters();
 }
 
 async function getData () {
@@ -211,6 +209,9 @@ async function getData () {
                     `
                     dataTable.insertAdjacentHTML("beforeend", row);
                 }
+        })
+        setTimeout(()=>{
+            initializeFilters();
         })
     } catch (error) {
         console.log(error)
