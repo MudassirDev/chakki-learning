@@ -200,7 +200,7 @@ async function getData () {
                     <div class="row">
                         <p><span class="label">NO.</span> ${i + 1}</p>
                         <p><span class="label">Order ID</span> ${order.id.slice(0, 3)}...${order.id.slice(-3)}</p>
-                        <p><span class="label">Customer</span> ${capitalizeWords(customer)}</p>
+                        <p><span class="label">Customer</span> <span name="customer">${capitalizeWords(customer)}<span></p>
                         <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
                         <p><span class="label">Paid Amount</span> ${order.paidAmount.toLocaleString()}</p>
                         <p><span class="label">Remaining Amount</span> ${order.remainingAmount.toLocaleString()}</p>
@@ -229,7 +229,7 @@ async function getData () {
                     <div class="row">
                         <p><span class="label">NO.</span> ${index}</p>
                         <p><span class="label">Order ID</span> ${orderId.slice(0, 3)}...${orderId.slice(-3)}</p>
-                        <p><span class="label">Customer</span> -</p>
+                        <p><span class="label">Customer</span> <span name="customer">-</span></p>
                         <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
                         <p><span class="label">Paid Amount</span> ${order.paidAmount.toLocaleString()}</p>
                         <p><span class="label">Remaining Amount</span> ${order.remainingAmount.toLocaleString()}</p>
