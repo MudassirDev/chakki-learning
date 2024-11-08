@@ -209,7 +209,7 @@ async function getData () {
 
 
             const filterHtml = `<div class="filter customerFilter"><input type="checkbox" name="${customer}" id="${customer}"><label for="${customer}">${customer}</label></div>`
-            customerFilters.insertAdjacentElement('beforeend', filterHtml);
+            customerFilters.insertAdjacentHTML('beforeend', filterHtml);
         })
     } catch (error) {
         console.log(error)
