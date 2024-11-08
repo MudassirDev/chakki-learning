@@ -93,11 +93,7 @@ const html = `
                 </div>
                 <div class="category">
                     <p class="label">Customers</p>
-                    <div class="filters">
-                        <div class="filter customerFilter">
-                            <input type="checkbox" name="alsan" id="alsan">
-                            <label for="alsan">Alsan</label>
-                        </div>
+                    <div class="filters" id="customerFilters">
                     </div>
                 </div>
             </div>
@@ -185,6 +181,7 @@ function init() {
 
 async function getData () {
     const dataTable = document.querySelector('.complete-data .data-table');
+    const customerFilters = document.getElementById('customerFilters');
     let totalCustomer = 0;
     let totalOrder = 0;
     try {
@@ -209,6 +206,10 @@ async function getData () {
                     `
                     dataTable.insertAdjacentHTML("beforeend", row);
                 }
+
+
+            const filterHtml = `<div class="filter customerFilter"><input type="checkbox" name="${customer}" id="${customer}"><label for="${customer}">${customer}</label></div>`
+            customerFilters.insertAdjacentElement('beforeend', filterHtml);
         })
     } catch (error) {
         console.log(error)
