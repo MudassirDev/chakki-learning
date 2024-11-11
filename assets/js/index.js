@@ -197,11 +197,11 @@ async function getData () {
                     <div class="row">
                         <p><span class="label">NO.</span> ${i + 1}</p>
                         <p><span class="label">Order ID</span> ${order.id.slice(0, 3)}...${order.id.slice(-3)}</p>
-                        <p><span class="label">Customer</span> <span name="customer">${capitalizeWords(customer)}</span></p>
+                        <p><span class="label">Customer</span> <span name="customer">${customer}</span></p>
                         <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
                         <p><span class="label">Paid Amount</span> ${order.paidAmount.toLocaleString()}</p>
                         <p><span class="label">Remaining Amount</span> ${order.remainingAmount.toLocaleString()}</p>
-                        <p><span class="label">Action</span> <button onclick="getOrderDetails('${order.id}')">View More</button></p>
+                        <p><span class="label">Action</span> <button onclick="getOrderDetails('${order.id}', '${customer}')">View More</button></p>
                     </div>
                     `
                     dataTable.insertAdjacentHTML("beforeend", row);
@@ -317,6 +317,6 @@ function initializeFilters() {
     }
 }
 
-async function getOrderDetails(orderId) {
-    console.log(orderId)
+async function getOrderDetails(orderId, customer) {
+    console.log(orderId, customer)
 }
