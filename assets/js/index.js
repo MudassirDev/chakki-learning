@@ -318,5 +318,16 @@ function initializeFilters() {
 }
 
 async function getOrderDetails(orderId, customer) {
-    console.log(orderId, customer)
+    if (customer) {
+        try {
+            const docSnap = await firebase.getDoc(firebase.doc(firebase.db, "Customers", orderId));
+            if (docSnap.exists()) {
+                console.log(docSnap.data());
+            } else {
+                console.log("Not Found!")
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }

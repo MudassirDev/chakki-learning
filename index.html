@@ -20,7 +20,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-        import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js'
+        import { getFirestore, collection, getDocs, getDoc, doc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js'
 
         const firebaseConfig = {
             apiKey: "AIzaSyALfhkR7cRDhKP5E5BgR8UeNJ_9gjv44s8",
@@ -36,7 +36,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        window.firebase = { auth, onAuthStateChanged, signOut, db, collection, getDocs }
+        window.firebase = { auth, onAuthStateChanged, signOut, db, collection, getDocs, getDoc, doc }
     </script>
     <script src="/chakki-learning/assets/js/global.js" defer></script>
     <script src="/chakki-learning/assets/js/index.js" defer></script>
