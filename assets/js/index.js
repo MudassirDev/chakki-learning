@@ -330,5 +330,17 @@ async function getOrderDetails(orderId, customer) {
         } catch (error) {
             console.error(error)
         }
+    } else {
+        try {
+            const docSnap = await firebase.getDoc(firebase.doc(firebase.db, "Orders", orderId));
+            if (docSnap.exists()) {
+                const order = docSnap.data();
+                console.log(order);
+            } else {
+                console.log("Not Found!")
+            }
+        } catch (error) {
+            console.error(error)
+        }
     }
 }
