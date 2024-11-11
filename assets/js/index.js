@@ -322,7 +322,8 @@ async function getOrderDetails(orderId, customer) {
         try {
             const docSnap = await firebase.getDoc(firebase.doc(firebase.db, "Customers", customer));
             if (docSnap.exists()) {
-                console.log(docSnap.data());
+                const allOrders = docSnap.data().orders;
+                console.log(allOrders.some(order => order.id == orderId));
             } else {
                 console.log("Not Found!")
             }
