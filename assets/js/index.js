@@ -201,7 +201,7 @@ async function getData () {
                         <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
                         <p><span class="label">Paid Amount</span> ${order.paidAmount.toLocaleString()}</p>
                         <p><span class="label">Remaining Amount</span> ${order.remainingAmount.toLocaleString()}</p>
-                        <p><span class="label">Action</span> <button onclick="getOrderDetails(${order.id})">View More</button></p>
+                        <p><span class="label">Action</span> <button onclick="getOrderDetails('${order.id}')">View More</button></p>
                     </div>
                     `
                     dataTable.insertAdjacentHTML("beforeend", row);
@@ -231,7 +231,7 @@ async function getData () {
                         <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
                         <p><span class="label">Paid Amount</span> ${order.paidAmount.toLocaleString()}</p>
                         <p><span class="label">Remaining Amount</span> ${order.remainingAmount.toLocaleString()}</p>
-                        <p><span class="label">Action</span> <button onclick="getOrderDetails(${orderId})">View More</button></p>
+                        <p><span class="label">Action</span> <button onclick="getOrderDetails('${orderId}')">View More</button></p>
                     </div>
                     `
             dataTable.insertAdjacentHTML("beforeend", row);
