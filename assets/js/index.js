@@ -320,7 +320,7 @@ function initializeFilters() {
 async function getOrderDetails(orderId, customer) {
     if (customer) {
         try {
-            const docSnap = await firebase.getDoc(firebase.doc(firebase.db, "Customers", orderId));
+            const docSnap = await firebase.getDoc(firebase.doc(firebase.db, "Customers", customer));
             if (docSnap.exists()) {
                 console.log(docSnap.data());
             } else {
