@@ -179,7 +179,7 @@ function init() {
     }
 }
 
-async function getData () {
+async function getData() {
     const dataTable = document.querySelector('.complete-data .data-table');
     const customerFilters = document.getElementById('customerFilters');
     let totalCustomer = 0;
@@ -190,10 +190,10 @@ async function getData () {
             totalCustomer += 1;
             const data = item.data();
             const customer = item.id;
-                for (let i = 0; i < data.orders.length; i++) {
-                    totalOrder += 1;
-                    const order = data.orders[i];
-                    const row = `
+            for (let i = 0; i < data.orders.length; i++) {
+                totalOrder += 1;
+                const order = data.orders[i];
+                const row = `
                     <div class="row">
                         <p><span class="label">NO.</span> ${i + 1}</p>
                         <p><span class="label">Order ID</span> ${order.id.slice(0, 3)}...${order.id.slice(-3)}</p>
@@ -204,8 +204,8 @@ async function getData () {
                         <p><span class="label">Action</span> <button onclick="getOrderDetails('${order.id}', '${customer}')">View More</button></p>
                     </div>
                     `
-                    dataTable.insertAdjacentHTML("beforeend", row);
-                }
+                dataTable.insertAdjacentHTML("beforeend", row);
+            }
 
 
             const filterHtml = `<div class="filter customerFilter"><input type="checkbox" name="${customer}" id="${customer}"><label for="${customer}">${customer}</label></div>`
@@ -323,7 +323,7 @@ async function getOrderDetails(orderId, customer) {
             const docSnap = await firebase.getDoc(firebase.doc(firebase.db, "Customers", customer));
             if (docSnap.exists()) {
                 const allOrders = docSnap.data().orders;
-                console.log(allOrders.find(order => order.id == orderId));
+                const order = allOrders.find(order => order.id == orderId);
             } else {
                 console.log("Not Found!")
             }
@@ -334,8 +334,7 @@ async function getOrderDetails(orderId, customer) {
         try {
             const docSnap = await firebase.getDoc(firebase.doc(firebase.db, "Orders", orderId));
             if (docSnap.exists()) {
-                const order = docSnap.data();
-                console.log(order);
+                const order = docSnap.data().order;
             } else {
                 console.log("Not Found!")
             }
@@ -343,4 +342,151 @@ async function getOrderDetails(orderId, customer) {
             console.error(error)
         }
     }
+}
+
+
+function showReceipt() {
+
+
+    // Create the main container
+    const invoicePopupMain = document.createElement('div');
+    invoicePopupMain.classList.add('invoice-popup-main');
+
+    // Invoice container
+    const invoiceContainer = document.createElement('div');
+    invoiceContainer.classList.add('invoice-container');
+
+    // Title section
+    const invTitle = document.createElement('div');
+    invTitle.classList.add('inv-title');
+    const titleHeading = document.createElement('h1');
+    titleHeading.textContent = 'Invoice';
+    invTitle.appendChild(titleHeading);
+
+    // Header section
+    const invHeader = document.createElement('div');
+    invHeader.classList.add('inv-header');
+
+    const customerDiv = document.createElement('div');
+    const customerName = document.createElement('h2');
+    customerName.textContent = 'Customer Name';
+    customerDiv.appendChild(customerName);
+
+    const dateDiv = document.createElement('div');
+    const dateTable = document.createElement('table');
+    const dateRow = document.createElement('tr');
+    const dateTh = document.createElement('th');
+    dateTh.textContent = 'Date';
+    const dateTd = document.createElement('td');
+    dateTd.textContent = '12-02-2018';
+
+    dateRow.appendChild(dateTh);
+    dateRow.appendChild(dateTd);
+    dateTable.appendChild(dateRow);
+    dateDiv.appendChild(dateTable);
+
+    invHeader.appendChild(customerDiv);
+    invHeader.appendChild(dateDiv);
+
+    // Body section
+    const invBody = document.createElement('div');
+    invBody.classList.add('inv-body');
+
+    const productTable = document.createElement('table');
+
+    // Table header
+    const tableHead = document.createElement('thead');
+    const headers = ['Product', 'Quantity', 'Price'];
+    headers.forEach(headerText => {
+        const th = document.createElement('th');
+        th.textContent = headerText;
+        tableHead.appendChild(th);
+    });
+
+    // Table body with product row
+    const tableBody = document.createElement('tbody');
+    const productRow = document.createElement('tr');
+
+    const productCell = document.createElement('td');
+    const productName = document.createElement('h4');
+    productName.textContent = 'Sada Ata';
+    const productWeight = document.createElement('p');
+    productWeight.textContent = '10KG';
+    productCell.appendChild(productName);
+    productCell.appendChild(productWeight);
+
+    const quantityCell = document.createElement('td');
+    quantityCell.textContent = '5';
+
+    const priceCell = document.createElement('td');
+    priceCell.textContent = '2000';
+
+    productRow.appendChild(productCell);
+    productRow.appendChild(quantityCell);
+    productRow.appendChild(priceCell);
+    tableBody.appendChild(productRow);
+
+    productTable.appendChild(tableHead);
+    productTable.appendChild(tableBody);
+    invBody.appendChild(productTable);
+
+    // Footer section
+    const invFooter = document.createElement('div');
+    invFooter.classList.add('inv-footer');
+
+    const footerTableDiv = document.createElement('div');
+    const footerTable = document.createElement('table');
+
+    const footerRows = [
+        { label: 'Remaining', value: '' },
+        { label: 'Paid', value: '' },
+        { label: 'Total', value: '' }
+    ];
+
+    footerRows.forEach(row => {
+        const tr = document.createElement('tr');
+        const th = document.createElement('th');
+        th.textContent = row.label;
+        const td = document.createElement('td');
+        td.textContent = row.value;
+        tr.appendChild(th);
+        tr.appendChild(td);
+        footerTable.appendChild(tr);
+    });
+
+    footerTableDiv.appendChild(footerTable);
+    invFooter.appendChild(document.createElement('div')); // Empty div
+    invFooter.appendChild(footerTableDiv);
+
+    // Actions section
+    const invActions = document.createElement('div');
+    invActions.classList.add('inv-actions');
+
+    const actionsDiv = document.createElement('div');
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit Order';
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete Order';
+    actionsDiv.appendChild(editButton);
+    actionsDiv.appendChild(deleteButton);
+
+    const downloadButton = document.createElement('button');
+    downloadButton.classList.add('download-invoice');
+    downloadButton.textContent = 'Download Invoice';
+
+    invActions.appendChild(actionsDiv);
+    invActions.appendChild(downloadButton);
+
+    // Append all sections to the container
+    invoiceContainer.appendChild(invTitle);
+    invoiceContainer.appendChild(invHeader);
+    invoiceContainer.appendChild(invBody);
+    invoiceContainer.appendChild(invFooter);
+    invoicePopupMain.appendChild(invoiceContainer);
+    invoicePopupMain.appendChild(invActions);
+
+    // Append the main container to the document body or a specific parent container
+    document.body.appendChild(invoicePopupMain);
+
+
 }
