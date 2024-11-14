@@ -292,3 +292,20 @@ span[name="customer"] {
     max-width: 90%;
     margin: 0 auto;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table,
+table th,
+table td {
+    border: 1px solid silver;
+}
+
+table th,
+table td {
+    text-align: right;
+    padding: 8px;
+}

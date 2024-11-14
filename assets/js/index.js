@@ -487,6 +487,4 @@ function showReceipt() {
 
     // Append the main container to the document body or a specific parent container
     document.body.appendChild(invoicePopupMain);
-
-
 }
