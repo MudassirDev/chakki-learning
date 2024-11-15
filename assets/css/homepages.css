@@ -222,6 +222,7 @@ span[name="customer"] {
 .inv-header h2 {
     font-size: 20px;
     margin: 0 0 0.3rem 0;
+    text-transform: capitalize;
 }
 
 .inv-header ul li {
@@ -270,7 +271,7 @@ span[name="customer"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
