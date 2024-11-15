@@ -251,10 +251,6 @@ async function getData() {
     initializeFilters();
 }
 
-function capitalizeWords(str) {
-    return str.replace(/\b\w/g, (char) => char.toUpperCase());
-}
-
 
 function initializeFilters() {
     const allFilters = document.querySelectorAll('.filter');
