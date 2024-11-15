@@ -475,8 +475,11 @@ function showReceipt(order) {
     editButton.textContent = 'Edit Order';
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete Order';
+    const closeButton = document.createElement('button');
+    closeButton.textContent = "Close";
     actionsDiv.appendChild(editButton);
     actionsDiv.appendChild(deleteButton);
+    actionsDiv.appendChild(closeButton);
 
     const downloadButton = document.createElement('button');
     downloadButton.classList.add('download-invoice');
@@ -497,6 +500,10 @@ function showReceipt(order) {
     // Append the main container to the document body or a specific parent container
     document.body.insertAdjacentHTML('beforeend', `<div class="overlay"></div>`)
     document.body.appendChild(invoicePopupMain);
+    closeButton.addEventListener('click', ()=>{
+        document.querySelector('.overlay').remove();
+        invoicePopupMain.remove();
+    })
 }
 
 function downloadInvoice() {

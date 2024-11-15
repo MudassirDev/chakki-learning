@@ -58,59 +58,9 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-    margin: 0;
-}
-
-/* Font Size */
-/* h1 {
-    font-size: var(--heading-large);
-}
-
-h2 {
-    font-size: var(--heading-medium);
-}
-
-h3 {
-    font-size: var(--heading-small);
-}
-
-h4 {
-    font-size: calc(var(--heading-small) - .2rem);
-}
-
-h5 {
-    font-size: calc(var(--heading-small) - .4rem);
-}
-
-h6 {
-    font-size: calc(var(--heading-small) - .6rem);
-} */
-
-/* Font Weight */
-h1,
-h2 {
-    font-weight: 900;
-}
-
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 800;
-}
-
-/* Paragraphs */
+h6,
 p {
     margin: 0;
-    font-size: var(--paragraph);
-}
-
-/* Links */
-a {
-    color: hsla(var(--primary), 1);
-    font-size: var(--paragraph);
-    text-decoration: underline;
 }
 
 /* =========
@@ -119,18 +69,8 @@ Buttons
 
 button {
     padding: .8em 1.2em;
-    border: 1px solid hsl(var(--black));
-    background-color: hsl(var(--background));
-    font-size: var(--paragraph);
     cursor: pointer;
     outline: none;
-}
-
-button:focus {
-    box-shadow:
-        0 0 0 2px hsl(var(--black)),
-        0 0 0 3px hsl(var(--white));
-    border: 1px solid transparent;
 }
 
 /* =======
