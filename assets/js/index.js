@@ -321,7 +321,7 @@ async function getOrderDetails(orderId, customer) {
                 const allOrders = docSnap.data().orders;
                 const order = allOrders.find(order => order.id == orderId);
                 console.log(order);
-                showReceipt(order);
+                showReceipt(order, customer);
             } else {
                 console.log("Not Found!")
             }
@@ -334,7 +334,7 @@ async function getOrderDetails(orderId, customer) {
             if (docSnap.exists()) {
                 const order = docSnap.data().order;
                 console.log(order);
-                showReceipt(order);
+                showReceipt(order, "-");
             } else {
                 console.log("Not Found!")
             }
@@ -345,7 +345,7 @@ async function getOrderDetails(orderId, customer) {
 }
 
 
-function showReceipt(order) {
+function showReceipt(order, customer) {
 
 
     // Create the main container
@@ -369,7 +369,7 @@ function showReceipt(order) {
 
     const customerDiv = document.createElement('div');
     const customerName = document.createElement('h2');
-    customerName.textContent = 'Customer Name';
+    customerName.textContent = customer;
     customerDiv.appendChild(customerName);
 
     const dateDiv = document.createElement('div');
