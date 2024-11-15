@@ -324,7 +324,8 @@ async function getOrderDetails(orderId, customer) {
             if (docSnap.exists()) {
                 const allOrders = docSnap.data().orders;
                 const order = allOrders.find(order => order.id == orderId);
-                console.log(order)
+                console.log(order);
+                showReceipt(order);
             } else {
                 console.log("Not Found!")
             }
@@ -336,7 +337,8 @@ async function getOrderDetails(orderId, customer) {
             const docSnap = await firebase.getDoc(firebase.doc(firebase.db, "Orders", orderId));
             if (docSnap.exists()) {
                 const order = docSnap.data().order;
-                console.log(order)
+                console.log(order);
+                showReceipt(order);
             } else {
                 console.log("Not Found!")
             }
@@ -380,7 +382,7 @@ function showReceipt(order) {
     const dateTh = document.createElement('th');
     dateTh.textContent = 'Date';
     const dateTd = document.createElement('td');
-    dateTd.textContent = '12-02-2018';
+    dateTd.textContent = order.date;
 
     dateRow.appendChild(dateTh);
     dateRow.appendChild(dateTd);
@@ -407,26 +409,30 @@ function showReceipt(order) {
 
     // Table body with product row
     const tableBody = document.createElement('tbody');
-    const productRow = document.createElement('tr');
 
-    const productCell = document.createElement('td');
-    const productName = document.createElement('h4');
-    productName.textContent = 'Sada Ata';
-    const productWeight = document.createElement('p');
-    productWeight.textContent = '10KG';
-    productCell.appendChild(productName);
-    productCell.appendChild(productWeight);
+    for (const [key, value] of Object.entries(order.items)) {
+        const productRow = document.createElement('tr');
+    
+        const productCell = document.createElement('td');
+        const productName = document.createElement('h4');
+        productName.textContent = key.split("-")[0].replace("_", " ");
+        const productWeight = document.createElement('p');
+        productWeight.textContent = value.amount;
+        productCell.appendChild(productName);
+        productCell.appendChild(productWeight);
+    
+        const quantityCell = document.createElement('td');
+        quantityCell.textContent = value.quantity;
+    
+        const priceCell = document.createElement('td');
+        priceCell.textContent = value.price;
+    
+        productRow.appendChild(productCell);
+        productRow.appendChild(quantityCell);
+        productRow.appendChild(priceCell);
+        tableBody.appendChild(productRow);
+    }
 
-    const quantityCell = document.createElement('td');
-    quantityCell.textContent = '5';
-
-    const priceCell = document.createElement('td');
-    priceCell.textContent = '2000';
-
-    productRow.appendChild(productCell);
-    productRow.appendChild(quantityCell);
-    productRow.appendChild(priceCell);
-    tableBody.appendChild(productRow);
 
     productTable.appendChild(tableHead);
     productTable.appendChild(tableBody);
@@ -440,9 +446,9 @@ function showReceipt(order) {
     const footerTable = document.createElement('table');
 
     const footerRows = [
-        { label: 'Remaining', value: '' },
-        { label: 'Paid', value: '' },
-        { label: 'Total', value: '' }
+        { label: 'Remaining', value: order.remainingAmount },
+        { label: 'Paid', value: order.paidAmount },
+        { label: 'Total', value: order.orderAmount }
     ];
 
     footerRows.forEach(row => {
