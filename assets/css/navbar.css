@@ -63,7 +63,7 @@ h6 {
 }
 
 /* Font Size */
-h1 {
+/* h1 {
     font-size: var(--heading-large);
 }
 
@@ -85,7 +85,7 @@ h5 {
 
 h6 {
     font-size: calc(var(--heading-small) - .6rem);
-}
+} */
 
 /* Font Weight */
 h1,
