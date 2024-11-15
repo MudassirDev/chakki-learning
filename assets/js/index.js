@@ -324,6 +324,7 @@ async function getOrderDetails(orderId, customer) {
             if (docSnap.exists()) {
                 const allOrders = docSnap.data().orders;
                 const order = allOrders.find(order => order.id == orderId);
+                console.log(order)
             } else {
                 console.log("Not Found!")
             }
@@ -335,6 +336,7 @@ async function getOrderDetails(orderId, customer) {
             const docSnap = await firebase.getDoc(firebase.doc(firebase.db, "Orders", orderId));
             if (docSnap.exists()) {
                 const order = docSnap.data().order;
+                console.log(order)
             } else {
                 console.log("Not Found!")
             }
@@ -345,7 +347,7 @@ async function getOrderDetails(orderId, customer) {
 }
 
 
-function showReceipt() {
+function showReceipt(order) {
 
 
     // Create the main container
