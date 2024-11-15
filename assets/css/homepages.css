@@ -261,6 +261,8 @@ span[name="customer"] {
     opacity: .8;
     position: fixed;
     z-index: 1;
+    top: 0;
+    left: 0;
 }
 
 .invoice-popup-main {
