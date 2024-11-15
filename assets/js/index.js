@@ -481,6 +481,7 @@ function showReceipt(order) {
     const downloadButton = document.createElement('button');
     downloadButton.classList.add('download-invoice');
     downloadButton.textContent = 'Download Invoice';
+    downloadButton.addEventListener('click', downloadInvoice)
 
     invActions.appendChild(actionsDiv);
     invActions.appendChild(downloadButton);
@@ -495,4 +496,19 @@ function showReceipt(order) {
 
     // Append the main container to the document body or a specific parent container
     document.body.appendChild(invoicePopupMain);
+}
+
+function downloadInvoice() {
+    const invoiceContainer = this.parentElement.previousElementSibling;
+    invoiceContainer.style.maxWidth = "unset";
+    html2canvas(invoiceContainer).then(canvas => {
+        const image = canvas.toDataURL("image/png");
+        const downloadLink = document.createElement("a");
+        downloadLink.href = image;
+        downloadLink.download = "invoice.png";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    });
+    invoiceContainer.style.maxWidth = "90%"
 }
