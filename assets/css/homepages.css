@@ -266,6 +266,16 @@ span[name="customer"] {
     left: 0;
 }
 
+.invoice-popup-main-parent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    z-index: 2;
+}
+
 .invoice-popup-main {
     display: flex;
     flex-direction: column;

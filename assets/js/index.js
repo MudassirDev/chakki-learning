@@ -349,6 +349,8 @@ function showReceipt(order, customer) {
 
 
     // Create the main container
+    const invoiceParentContainer = document.createElement('div');
+    invoiceParentContainer.classList.add('invoice-popup-main-parent')
     const invoicePopupMain = document.createElement('div');
     invoicePopupMain.classList.add('invoice-popup-main');
 
@@ -492,13 +494,14 @@ function showReceipt(order, customer) {
     invoiceContainer.appendChild(invFooter);
     invoicePopupMain.appendChild(invoiceContainer);
     invoicePopupMain.appendChild(invActions);
+    invoiceParentContainer.append(invoicePopupMain)
 
     // Append the main container to the document body or a specific parent container
     document.body.insertAdjacentHTML('beforeend', `<div class="overlay"></div>`)
-    document.body.appendChild(invoicePopupMain);
+    document.body.appendChild(invoiceParentContainer);
     closeButton.addEventListener('click', ()=>{
         document.querySelector('.overlay').remove();
-        invoicePopupMain.remove();
+        invoiceParentContainer.remove();
     })
 }
 
