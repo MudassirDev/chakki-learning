@@ -469,14 +469,8 @@ function showReceipt(order, customer) {
     invActions.classList.add('inv-actions');
 
     const actionsDiv = document.createElement('div');
-    const editButton = document.createElement('button');
-    editButton.textContent = 'Edit Order';
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete Order';
     const closeButton = document.createElement('button');
     closeButton.textContent = "Close";
-    actionsDiv.appendChild(editButton);
-    actionsDiv.appendChild(deleteButton);
     actionsDiv.appendChild(closeButton);
 
     const downloadButton = document.createElement('button');
