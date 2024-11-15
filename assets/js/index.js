@@ -495,6 +495,7 @@ function showReceipt(order) {
     invoicePopupMain.appendChild(invActions);
 
     // Append the main container to the document body or a specific parent container
+    document.body.insertAdjacentHTML('beforeend', `<div class="overlay"></div>`)
     document.body.appendChild(invoicePopupMain);
 }
 
