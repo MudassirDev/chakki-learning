@@ -453,10 +453,18 @@ function showReceipt(order, customer) {
         const tr = document.createElement('tr');
         const th = document.createElement('th');
         th.textContent = row.label;
-        const td = document.createElement('td');
-        td.textContent = row.value;
+        if (row.label == "Total") {
+            const td = document.createElement('td');
+            const input = document.createElement('input');
+            if (user?.displayName?.toLowerCase() !== "admin") input.disabled = true;
+            td.appendChild(input);
+            tr.appendChild(td);
+        } else {
+            const td = document.createElement('td');
+            td.textContent = row.value;
+            tr.appendChild(td);
+        }
         tr.appendChild(th);
-        tr.appendChild(td);
         footerTable.appendChild(tr);
     });
 
@@ -478,6 +486,7 @@ function showReceipt(order, customer) {
         actionsDiv.appendChild(deleteButton)
         const editButton = document.createElement('button');
         editButton.textContent = "Save"
+        editButton.classList.add("hide");
         actionsDiv.appendChild(editButton)
     }
 
