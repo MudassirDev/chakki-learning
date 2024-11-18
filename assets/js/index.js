@@ -459,11 +459,12 @@ function showReceipt(order, customer) {
             const input = document.createElement('input');
             if (user?.displayName?.toLowerCase() !== "admin") input.disabled = true;
             input.value = row.value;
+            input.setAttribute("data-value", row.value);
             input.classList.add("paid-input")
             td.appendChild(input);
             tr.appendChild(td);
             input.addEventListener('input', ()=>{
-                if (input.value != row.value) {
+                if (input.value != input.getAttribute('data-value')) {
                     document.getElementById('save-button').classList.remove("hide");
                 }
             })
