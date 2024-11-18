@@ -467,7 +467,7 @@ function showReceipt(order, customer) {
                 if (input.value != input.getAttribute('data-value')) {
                     document.getElementById('save-button').classList.remove("hide");
                 } else {
-                    document.getElementById('save-button').classList.remove("hide");
+                    document.getElementById('save-button').classList.add("hide");
                 }
             })
         } else {
