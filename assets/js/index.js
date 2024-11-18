@@ -462,6 +462,11 @@ function showReceipt(order, customer) {
             input.classList.add("paid-input")
             td.appendChild(input);
             tr.appendChild(td);
+            input.addEventListener('input', ()=>{
+                if (input.value != row.value) {
+                    document.getElementById('save-button').classList.remove("hide");
+                }
+            })
         } else {
             const td = document.createElement('td');
             td.textContent = row.value;
@@ -488,6 +493,7 @@ function showReceipt(order, customer) {
         actionsDiv.appendChild(deleteButton)
         const editButton = document.createElement('button');
         editButton.textContent = "Save"
+        editButton.id = "save-button";
         editButton.classList.add("hide");
         actionsDiv.appendChild(editButton)
     }
