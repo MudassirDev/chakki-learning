@@ -454,11 +454,12 @@ function showReceipt(order, customer) {
         const th = document.createElement('th');
         th.textContent = row.label;
         tr.appendChild(th);
-        if (row.label == "Total") {
+        if (row.label == "Paid") {
             const td = document.createElement('td');
             const input = document.createElement('input');
             if (user?.displayName?.toLowerCase() !== "admin") input.disabled = true;
             input.value = row.value;
+            input.classList.add("paid-input")
             td.appendChild(input);
             tr.appendChild(td);
         } else {

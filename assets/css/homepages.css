@@ -324,3 +324,11 @@ table td {
     text-align: right;
     padding: 8px;
 }
+
+.paid-input {
+    border: none;
+    outline: none;
+    text-align: right;
+    color: inherit;
+    font-weight: 600;
+}
