@@ -472,6 +472,14 @@ function showReceipt(order, customer) {
     const closeButton = document.createElement('button');
     closeButton.textContent = "Close";
     actionsDiv.appendChild(closeButton);
+    if (user?.displayName?.toLowerCase() == "admin") {
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = "Delete"
+        actionsDiv.appendChild(deleteButton)
+        const editButton = document.createElement('button');
+        editButton.textContent = "Save"
+        actionsDiv.appendChild(editButton)
+    }
 
     const downloadButton = document.createElement('button');
     downloadButton.classList.add('download-invoice');
