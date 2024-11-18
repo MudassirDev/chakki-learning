@@ -453,10 +453,12 @@ function showReceipt(order, customer) {
         const tr = document.createElement('tr');
         const th = document.createElement('th');
         th.textContent = row.label;
+        tr.appendChild(th);
         if (row.label == "Total") {
             const td = document.createElement('td');
             const input = document.createElement('input');
             if (user?.displayName?.toLowerCase() !== "admin") input.disabled = true;
+            input.value = row.value;
             td.appendChild(input);
             tr.appendChild(td);
         } else {
@@ -464,7 +466,6 @@ function showReceipt(order, customer) {
             td.textContent = row.value;
             tr.appendChild(td);
         }
-        tr.appendChild(th);
         footerTable.appendChild(tr);
     });
 
