@@ -6,13 +6,9 @@ async function fillSelect() {
     querySnapshot.forEach(doc => {
         const option = document.createElement("option");
         option.setAttribute("value", doc.id)
-        option.innerHTML = capitalizeWords(doc.id.toLowerCase());
+        option.innerHTML = doc.id.toLowerCase()
         customerSelect.append(option);
     });
-}
-
-function capitalizeWords(str) {
-    return str.replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 function getCurrentDate() {
