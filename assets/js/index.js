@@ -320,7 +320,6 @@ async function getOrderDetails(orderId, customer) {
             if (docSnap.exists()) {
                 const allOrders = docSnap.data().orders;
                 const order = allOrders.find(order => order.id == orderId);
-                console.log(order);
                 showReceipt(order, customer);
             } else {
                 console.log("Not Found!")
