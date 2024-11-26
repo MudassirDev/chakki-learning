@@ -299,6 +299,7 @@ function showReceipt(order, customer) {
                         </table>
                     </div>
                     <div class="inv-footer">
+                    <div></div>
                         <table>
                             <tr><th>Remaining</th><td>${order.remainingAmount}</td></tr>
                             <tr><th>Paid</th><td>${order.paidAmount}</td></tr>
