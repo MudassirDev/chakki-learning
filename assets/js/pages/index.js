@@ -316,11 +316,11 @@ function showReceipt(order, customer) {
     document.body.insertAdjacentHTML('beforeend', invoiceHTML);
 }
 
-function closeInvoice() {
+window.closeInvoice = () => {
     document.querySelector('.invoice-popup-main-parent').remove();
 }
 
-function downloadInvoice(button) {
+window.downloadInvoice = (button) => {
     const invoiceContainer = button.closest('.invoice-popup-main').querySelector('.invoice-container');
     invoiceContainer.style.maxWidth = "unset";
     html2canvas(invoiceContainer).then(canvas => {
