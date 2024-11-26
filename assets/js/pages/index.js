@@ -246,30 +246,81 @@ function updateSummary(totalCustomer, totalOrder) {
 }
 
 // Initialize Filters
+// function initializeFilters() {
+//     const allFilters = document.querySelectorAll('.filter');
+//     const allOrders = document.querySelectorAll('.row:not(:first-child)');
+//     const customerOrderFilter = document.getElementById('customer-orders');
+//     const otherOrderFilter = document.getElementById('other-orders');
+
+//     allFilters.forEach(filter => {
+//         filter.querySelector('input')?.addEventListener('change', () => {
+//             applyFilters(allOrders);
+//         });
+//     });
+
+//     const applyFilters = (orders) => {
+//         orders.forEach((row) => {
+//             row.classList.add('hide');
+//             const customerName = row.querySelector('[name="customer"]').textContent.toLowerCase();
+
+//             if (customerOrderFilter.checked && customerName !== "-") {
+//                 row.classList.remove('hide');
+//             } else if (otherOrderFilter.checked && customerName === "-") {
+//                 row.classList.remove('hide');
+//             }
+//         });
+//     };
+// }
 function initializeFilters() {
     const allFilters = document.querySelectorAll('.filter');
     const allOrders = document.querySelectorAll('.row:not(:first-child)');
     const customerOrderFilter = document.getElementById('customer-orders');
     const otherOrderFilter = document.getElementById('other-orders');
-
-    allFilters.forEach(filter => {
-        filter.querySelector('input')?.addEventListener('change', () => {
-            applyFilters(allOrders);
-        });
-    });
-
-    const applyFilters = (orders) => {
-        orders.forEach((row) => {
-            row.classList.add('hide');
-            const customerName = row.querySelector('[name="customer"]').textContent.toLowerCase();
-
-            if (customerOrderFilter.checked && customerName !== "-") {
-                row.classList.remove('hide');
-            } else if (otherOrderFilter.checked && customerName === "-") {
-                row.classList.remove('hide');
+    const allCustomerFilters = [...document.querySelectorAll('.customerFilter')];
+    const isShowCustomerOrder = () => { return customerOrderFilter.checked };
+    const isShowOtherOrder = () => { return otherOrderFilter.checked };
+    document.querySelectorAll('.filter-sidebar .body .category').forEach(category => {
+        category.querySelector('.label').addEventListener('click', function () {
+            const filters = category.querySelector('.filters');
+            const style = window.getComputedStyle(filters);
+            if (style.height == "0px") {
+                filters.style.height = "auto";
+                filters.style.transform = "translate(0px, 0px)";
+            } else {
+                filters.style.height = "0px";
+                filters.style.transform = "translate(-100vw, 0px)";
             }
-        });
-    };
+        })
+    })
+    allFilters.forEach(filter => {
+        const input = filter.querySelector('input');
+        if (input.getAttribute('type') == "checkbox") {
+            input.addEventListener('change', () => {
+                applyFilters();
+            })
+        }
+    })
+    function applyFilters() {
+        allOrders.forEach(row => {
+            row.classList.add('hide');
+            const customerName = row.querySelector('[name="customer"]').innerHTML.toLowerCase();
+            if (isShowCustomerOrder() && customerName != "-") {
+                if (allCustomerFilters.every(filter => filter.querySelector('input').checked == false)) {
+                    row.classList.remove('hide');
+                } else {
+                    allCustomerFilters.forEach(filter => {
+                        if (filter.querySelector('input').checked) {
+                            if (filter.querySelector('label').innerText.trim().toLowerCase() == customerName) {
+                                row.classList.remove('hide')
+                            }
+                        }
+                    })
+                }
+            };
+            if (isShowOtherOrder() && customerName == "-") row.classList.remove('hide');
+            if (!isShowCustomerOrder() && !isShowOtherOrder()) row.classList.remove('hide');
+        })
+    }
 }
 
 // Get Order Details
