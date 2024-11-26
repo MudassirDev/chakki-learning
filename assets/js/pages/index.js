@@ -305,11 +305,11 @@ function showReceipt(order, customer) {
                             <tr><th>Total</th><td>${order.orderAmount}</td></tr>
                         </table>
                     </div>
+                    </div>
                     <div class="inv-actions">
                         <button onclick="closeInvoice()">Close</button>
                         <button class="download-invoice" onclick="downloadInvoice(this)">Download Invoice</button>
                     </div>
-                </div>
             </div>
         </div>
     `;
