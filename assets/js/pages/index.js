@@ -1,8 +1,107 @@
-import { auth, db } from '../modules/firebase';
+import { auth, db } from '../modules/firebase.js';
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 import { getDocs, getDoc, collection, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
 const app = document.getElementById('application');
+const html = `
+    <nav id="navbar">
+        <ul class="navbar-items flexbox-col">
+            <li class="navbar-logo flexbox-left">
+                <a href="/chakki-learning" class="navbar-item-inner flexbox">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
+                        viewBox="0 0 1438.88 1819.54">
+                        <polygon points="925.79 318.48 830.56 0 183.51 1384.12 510.41 1178.46 925.79 318.48" />
+                        <polygon
+                            points="1438.88 1663.28 1126.35 948.08 111.98 1586.26 0 1819.54 1020.91 1250.57 1123.78 1471.02 783.64 1663.28 1438.88 1663.28" />
+                    </svg>
+                </a>
+            </li>
+            <li class="navbar-item flexbox-left" id="home-item">
+                <a href="/chakki-learning" class="navbar-item-inner flexbox-left">
+                    <div class="navbar-item-inner-icon-wrapper flexbox">
+                        <img src="/chakki-learning/assets/images/home.png" style="max-width: 35px;" alt="home icon" />
+                    </div>
+                    <span class="link-text">Home</span>
+                </a>
+            </li>
+            <li class="navbar-item flexbox-left">
+                <a class="navbar-item-inner flexbox-left" id="logoutBtn">
+                    <div class="navbar-item-inner-icon-wrapper flexbox">
+                        <img src="/chakki-learning/assets/images/logout.png" style="max-width: 35px;" alt="logout icon">
+                    </div>
+                    <span class="link-text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div id="main">
+        <div class="total-details">
+            <div class="container">
+                <div class="header">
+                    <h6>Total Orders</h6>
+                </div>
+                <div class="body"><p id="total-orders"></p></div>
+            </div>
+            <div class="container">
+                <div class="header">
+                    <h6>Total Customers</h6>
+                </div>
+                <div class="body"><p id="total-customers"></p></div>
+            </div>
+        </div>
+        <div class="complete-data">
+            
+            <div class="data-controls">
+                <button id="filter-button" class="filter-button">Filter</button>
+            </div>
+            <div class="data-table">
+                <div class="row head">
+                    <p>NO.</p>
+                    <p>Order ID</p>
+                    <p>Customer</p>
+                    <p>Order Amount</p>
+                    <p>Paid Amount</p>
+                    <p>Remaining Amount</p>
+                    <p>Action</p>
+                </div>
+            </div>
+        </div>
+        <div class="filter-sidebar">
+            <div class="head">
+                <p>Filters</p>
+                <p>Remove all filters</p>
+            </div>
+            <div class="body">
+                <div class="category">
+                    <p class="label">Orders</p>
+                    <div class="filters">
+                        <div class="filter">
+                            <input type="checkbox" name="customer-orders" id="customer-orders">
+                            <label for="customer-orders">Customer Orders</label>
+                        </div>
+                        <div class="filter">
+                            <input type="checkbox" name="other-orders" id="other-orders">
+                            <label for="other-orders">Other Orders</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <p class="label">Date</p>
+                    <div class="filters">
+                        <div class="filter timeline">
+                            <input type="date">to<input type="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <p class="label">Customers</p>
+                    <div class="filters" id="customerFilters">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
 
 // Render Menu Based on Login State
 onAuthStateChanged(auth, (user) => {
@@ -23,7 +122,7 @@ function renderLoggedOutMenu() {
 }
 
 function renderLoggedInMenu(user) {
-    app.innerHTML = "";
+    app.innerHTML = html;
     if (user?.displayName?.toLowerCase() === "admin") {
         document.getElementById('home-item')?.insertAdjacentHTML('afterend', "somehtml");
     }
