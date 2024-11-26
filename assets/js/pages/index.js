@@ -124,7 +124,32 @@ function renderLoggedOutMenu() {
 function renderLoggedInMenu(user) {
     app.innerHTML = html;
     if (user?.displayName?.toLowerCase() === "admin") {
-        document.getElementById('home-item')?.insertAdjacentHTML('afterend', "somehtml");
+        document.getElementById('home-item')?.insertAdjacentHTML('afterend', `
+                                <li class="navbar-item flexbox-left">
+                <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
+                    <div class="navbar-item-inner-icon-wrapper flexbox">
+                        <img src="/chakki-learning/assets/images/customer.png" style="max-width: 30px;" alt="customer icon" />
+                    </div>
+                    <span class="link-text">Create Customer</span>
+                </a>
+            </li>
+            <li class="navbar-item flexbox-left">
+                <a href="/chakki-learning/pages/createorder.html" class="navbar-item-inner flexbox-left">
+                    <div class="navbar-item-inner-icon-wrapper flexbox">
+                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
+                    </div>
+                    <span class="link-text">Create Order</span>
+                </a>
+            </li>
+            <li class="navbar-item flexbox-left">
+                <a href="/chakki-learning/pages/createorderforcustomer.html" class="navbar-item-inner flexbox-left">
+                    <div class="navbar-item-inner-icon-wrapper flexbox">
+                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
+                    </div>
+                    <span class="link-text">Create Order (For Customer)</span>
+                </a>
+            </li>
+                    `);
     }
     init();
     getData();
