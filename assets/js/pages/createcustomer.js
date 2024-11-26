@@ -1,5 +1,5 @@
 import { collection, doc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-import { db } from "../modules/firebase";
+import { db } from "../modules/firebase.js";
 
 // DOM Elements
 const createCustomerForm = document.getElementById('customer-main').querySelector('form');
