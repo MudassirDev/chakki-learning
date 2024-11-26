@@ -1,4 +1,4 @@
-import { setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+import { setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 import { auth } from "../modules/firebase.js";
 
 // DOM Element
