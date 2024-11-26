@@ -1,5 +1,5 @@
 import { setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-import { auth } from "../modules/firebase";
+import { auth } from "../modules/firebase.js";
 
 // DOM Element
 const loginForm = document.getElementById('login-form');
