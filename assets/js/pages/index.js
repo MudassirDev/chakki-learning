@@ -248,7 +248,7 @@ function initializeFilters() {
 }
 
 // Get Order Details
-async function getOrderDetails(orderId, customerId = null) {
+window.getOrderDetails = async (orderId, customerId = null) => {
     try {
         let orderData;
         if (customerId) {
