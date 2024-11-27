@@ -1,10 +1,16 @@
 import { collection, doc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 import { db } from "../modules/firebase.js";
+import { initLogout, checkUser } from "../modules/utils.js";
+
+// checking User
+checkUser();
+
+// initializing event listener for logout
+initLogout();
 
 // DOM Elements
 const createCustomerForm = document.getElementById('customer-main').querySelector('form');
 const loader = document.getElementById('customer-main').querySelector('.loader');
-const getCustomers = document.getElementById('getCustomers');
 
 // Event Listener for Customer Creation
 createCustomerForm.addEventListener('submit', async (e) => {
