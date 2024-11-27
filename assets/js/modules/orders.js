@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
-import { db } from './firebase';
+import { db } from './firebase.js';
 
 export const createOrder = () => ({
     date: new Date().toISOString(), // Use current date as default
