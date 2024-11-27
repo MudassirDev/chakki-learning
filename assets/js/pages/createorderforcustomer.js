@@ -1,6 +1,11 @@
 import { createOrder, addItemToOrder, deleteOrderItem, saveCustomerOrderToDb, displayOrderItems } from '../modules/orders.js';
 import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 import { db } from '../modules/firebase.js';
+import { checkUser, initLogout } from '../modules/utils.js';
+
+// important functions
+checkUser();
+initLogout();
 
 const customerSelect = document.getElementById('selectCustomer');
 const addToDbForm = document.getElementById('add-to-db-form').querySelector('form');

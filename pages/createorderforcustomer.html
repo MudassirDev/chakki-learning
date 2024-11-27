@@ -133,7 +133,7 @@
             </div>
         </div>
     </div>
-
+<!-- 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
@@ -164,20 +164,9 @@
             getDoc: getDoc,
             setDoc: setDoc
         }
-    </script>
+    </script> -->
 
-    <script src="/chakki-learning/assets/js/global.js" defer></script>
-    <script defer>
-        const logoutBtn = document.getElementById('logoutBtn');
 
-        logoutBtn.addEventListener('click', function() {
-            firebase.signOut(firebase.auth).then(() => {
-                window.location.href = '/chakki-learning/';
-            }).catch((error) => {
-                console.log(error)
-            });
-        })
-    </script>
-    <script src="/chakki-learning/assets/js/createorderforcustomer.js" defer></script>
+    <script type="module" src="/chakki-learning/assets/js/pages/createorderforcustomer.js" defer></script>
 </body>
 </html>
