@@ -1,4 +1,4 @@
-import { createOrder, addItemToOrder, deleteOrderItem, saveOrderToDb, displayOrderItems } from '../modules/orders';
+import { createOrder, addItemToOrder, deleteOrderItem, saveOrderToDb, displayOrderItems } from '../modules/orders.js';
 
 const date = getCurrentDate();
 const outcome = document.getElementById('outcome');
