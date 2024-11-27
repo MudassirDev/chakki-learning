@@ -56,7 +56,6 @@ const html = `
             </div>
             <div class="data-table">
                 <div class="row head">
-                    <p>NO.</p>
                     <p>Order ID</p>
                     <p>Customer</p>
                     <p>Order Amount</p>
@@ -218,7 +217,6 @@ async function getData() {
 function appendOrderRow(dataTable, customerId, index, order, orderId = order.id) {
     const rowHTML = `
         <div class="row">
-            <p><span class="label">NO.</span> ${index}</p>
             <p><span class="label">Order ID</span> ${orderId.slice(0, 3)}...${orderId.slice(-3)}</p>
             <p><span class="label">Customer</span> <span name="customer">${customerId}</span></p>
             <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
