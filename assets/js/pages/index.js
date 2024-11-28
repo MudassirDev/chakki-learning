@@ -105,8 +105,8 @@ const html = `
 // Render Menu Based on Login State
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        renderLoggedInMenu();
         window.user = user;
+        renderLoggedInMenu();
     } else {
         renderLoggedOutMenu();
     }
@@ -413,3 +413,7 @@ window.downloadInvoice = (button) => {
     });
     invoiceContainer.style.maxWidth = "90%";
 }
+
+window.saveOrder = (customer, orderId)=> {};
+
+window.deleteOrder = (customer, orderId) => {}
