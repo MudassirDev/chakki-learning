@@ -226,7 +226,7 @@ function appendOrderRow(dataTable, customerId, index, order, orderId = order.id)
             <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
             <p><span class="label">Paid Amount</span> ${order.paidAmount.toLocaleString()}</p>
             <p><span class="label">Remaining Amount</span> ${order.remainingAmount.toLocaleString()}</p>
-            <p><span class="label">Action</span> <button onclick="getOrderDetails('${orderId}', '${customerId}')">View More</button></p>
+            <p><span class="label">Action</span> <button onclick="getOrderDetails('${orderId}', '${customerId}', this)">View More</button></p>
         </div>
     `;
     dataTable.insertAdjacentHTML("beforeend", rowHTML);
@@ -247,32 +247,6 @@ function updateSummary(totalCustomer, totalOrder) {
     document.getElementById('total-orders').textContent = totalOrder;
 }
 
-// Initialize Filters
-// function initializeFilters() {
-//     const allFilters = document.querySelectorAll('.filter');
-//     const allOrders = document.querySelectorAll('.row:not(:first-child)');
-//     const customerOrderFilter = document.getElementById('customer-orders');
-//     const otherOrderFilter = document.getElementById('other-orders');
-
-//     allFilters.forEach(filter => {
-//         filter.querySelector('input')?.addEventListener('change', () => {
-//             applyFilters(allOrders);
-//         });
-//     });
-
-//     const applyFilters = (orders) => {
-//         orders.forEach((row) => {
-//             row.classList.add('hide');
-//             const customerName = row.querySelector('[name="customer"]').textContent.toLowerCase();
-
-//             if (customerOrderFilter.checked && customerName !== "-") {
-//                 row.classList.remove('hide');
-//             } else if (otherOrderFilter.checked && customerName === "-") {
-//                 row.classList.remove('hide');
-//             }
-//         });
-//     };
-// }
 function initializeFilters() {
     const allFilters = document.querySelectorAll('.filter');
     const allOrders = document.querySelectorAll('.row:not(:first-child)');
@@ -326,7 +300,7 @@ function initializeFilters() {
 }
 
 // Get Order Details
-window.getOrderDetails = async (orderId, customerId) => {
+window.getOrderDetails = async (orderId, customerId, actionBtn) => {
     try {
         let orderData;
         if (customerId != "-") {
@@ -341,14 +315,14 @@ window.getOrderDetails = async (orderId, customerId) => {
                 orderData = orderDoc.data().order;
             }
         }
-        if (orderData) showReceipt(orderData, customerId, orderId);
+        if (orderData) showReceipt(orderData, customerId, orderId, actionBtn);
     } catch (error) {
         console.error(error);
     }
 }
 
 // Show Invoice Receipt
-function showReceipt(order, customer, orderId) {
+function showReceipt(order, customer, orderId, actionBtn) {
     const invoiceHTML = `
         <div class="invoice-popup-main-parent">
             <div class="overlay"></div>
@@ -390,7 +364,7 @@ function showReceipt(order, customer, orderId) {
                         <button class="download-invoice" onclick="downloadInvoice(this)">Download Invoice</button>
                         ${checkUsersPerm() ? 
                             `<button class="save-invoice" onclick="saveOrder('${customer}', '${orderId}')">Save</button>
-                             <button class="delete-invoice" onclick="deleteOrder('${customer}', '${orderId}')">Delete</button>` 
+                             <button class="delete-invoice" onclick="deleteOrder('${customer}', '${orderId}', ${actionBtn})">Delete</button>` 
                             : ""}
                     </div>
             </div>
@@ -417,8 +391,10 @@ window.downloadInvoice = (button) => {
 
 window.saveOrder = (customer, orderId)=> {};
 
-window.deleteOrder = (customer, orderId) => {
+window.deleteOrder = (customer, orderId, actionBtn) => {
     if (customer == "-") {
         deleteDocument("Orders", orderId)
+        closeInvoice();
+        actionBtn.parentElement.remove();
     }
 }
