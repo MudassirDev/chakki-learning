@@ -190,16 +190,20 @@ async function getData() {
     let totalCustomer = 0, totalOrder = 0;
 
     try {
-        const customers = await getDocs(collection(db, "Customers"));
-        const orders = await getDocs(collection(db, "Orders"));
+        const customers = await completeData.getCustomers();
+        const orders = await completeData.getOrders();
+
+        totalCustomer = customers.length;
+        totalOrder += orders.length
 
         customers.forEach((doc) => {
-            totalCustomer++;
-            const data = doc.data();
+            // totalCustomer++;
+            const data = doc.orders;
             const customerId = doc.id;
+            totalOrder += data.length;
 
-            data.orders.forEach((order, i) => {
-                totalOrder++;
+            data.forEach((order, i) => {
+                // totalOrder++;
                 appendOrderRow(dataTable, customerId, i + 1, order);
             });
 
@@ -207,8 +211,8 @@ async function getData() {
         });
 
         orders.forEach((doc, index) => {
-            totalOrder++;
-            const order = doc.data().order;
+            // totalOrder++;
+            const order = doc.order;
             appendOrderRow(dataTable, "-", index + 1, order, doc.id);
         });
 
