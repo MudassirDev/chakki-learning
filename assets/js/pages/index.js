@@ -105,7 +105,8 @@ const html = `
 // Render Menu Based on Login State
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        renderLoggedInMenu(user);
+        renderLoggedInMenu();
+        window.user = user;
     } else {
         renderLoggedOutMenu();
     }
@@ -120,9 +121,11 @@ function renderLoggedOutMenu() {
     `;
 }
 
-function renderLoggedInMenu(user) {
+const checkUsersPerm = () => user?.displayName?.toLowerCase() === "admin";
+
+function renderLoggedInMenu() {
     app.innerHTML = html;
-    if (user?.displayName?.toLowerCase() === "admin") {
+    if (checkUsersPerm()) {
         document.getElementById('home-item')?.insertAdjacentHTML('afterend', `
                                 <li class="navbar-item flexbox-left">
                 <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
@@ -332,21 +335,19 @@ window.getOrderDetails = async (orderId, customerId) => {
                 orderData = orders.find(order => order.id === orderId);
             }
         } else {
-            console.log(orderId)
             const orderDoc = await getDoc(doc(db, "Orders", orderId));
             if (orderDoc.exists()) {
                 orderData = orderDoc.data().order;
-                console.log(orderData)
             }
         }
-        if (orderData) showReceipt(orderData, customerId);
+        if (orderData) showReceipt(orderData, customerId, orderId);
     } catch (error) {
         console.error(error);
     }
 }
 
 // Show Invoice Receipt
-function showReceipt(order, customer) {
+function showReceipt(order, customer, orderId) {
     const invoiceHTML = `
         <div class="invoice-popup-main-parent">
             <div class="overlay"></div>
@@ -386,6 +387,10 @@ function showReceipt(order, customer) {
                     <div class="inv-actions">
                         <button onclick="closeInvoice()">Close</button>
                         <button class="download-invoice" onclick="downloadInvoice(this)">Download Invoice</button>
+                        ${checkUsersPerm() ? 
+                            `<button class="save-invoice" onclick="saveOrder(${customer}, ${orderId})">Save</button>
+                             <button class="delete-invoice" onclick="deleteOrder(${customer}, ${orderId})">Delete</button>` 
+                            : ""}
                     </div>
             </div>
         </div>
