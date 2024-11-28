@@ -226,7 +226,7 @@ function appendOrderRow(dataTable, customerId, index, order, orderId = order.id)
             <p><span class="label">Order Amount</span> ${order.orderAmount.toLocaleString()}</p>
             <p><span class="label">Paid Amount</span> ${order.paidAmount.toLocaleString()}</p>
             <p><span class="label">Remaining Amount</span> ${order.remainingAmount.toLocaleString()}</p>
-            <p><span class="label">Action</span> <button onclick="getOrderDetails('${orderId}', '${customerId}', this)">View More</button></p>
+            <p><span class="label">Action</span> <button onclick="getOrderDetails('${orderId}', '${customerId}')">View More</button></p>
         </div>
     `;
     dataTable.insertAdjacentHTML("beforeend", rowHTML);
@@ -300,7 +300,7 @@ function initializeFilters() {
 }
 
 // Get Order Details
-window.getOrderDetails = async (orderId, customerId, actionBtn) => {
+window.getOrderDetails = async (orderId, customerId) => {
     try {
         let orderData;
         if (customerId != "-") {
@@ -315,14 +315,14 @@ window.getOrderDetails = async (orderId, customerId, actionBtn) => {
                 orderData = orderDoc.data().order;
             }
         }
-        if (orderData) showReceipt(orderData, customerId, orderId, actionBtn);
+        if (orderData) showReceipt(orderData, customerId, orderId);
     } catch (error) {
         console.error(error);
     }
 }
 
 // Show Invoice Receipt
-function showReceipt(order, customer, orderId, actionBtn) {
+function showReceipt(order, customer, orderId) {
     const invoiceHTML = `
         <div class="invoice-popup-main-parent">
             <div class="overlay"></div>
@@ -364,7 +364,7 @@ function showReceipt(order, customer, orderId, actionBtn) {
                         <button class="download-invoice" onclick="downloadInvoice(this)">Download Invoice</button>
                         ${checkUsersPerm() ? 
                             `<button class="save-invoice" onclick="saveOrder('${customer}', '${orderId}')">Save</button>
-                             <button class="delete-invoice" onclick="deleteOrder('${customer}', '${orderId}', ${actionBtn})">Delete</button>` 
+                             <button class="delete-invoice" onclick="deleteOrder('${customer}', '${orderId}')">Delete</button>` 
                             : ""}
                     </div>
             </div>
@@ -391,10 +391,10 @@ window.downloadInvoice = (button) => {
 
 window.saveOrder = (customer, orderId)=> {};
 
-window.deleteOrder = (customer, orderId, actionBtn) => {
+window.deleteOrder = (customer, orderId) => {
     if (customer == "-") {
         deleteDocument("Orders", orderId)
         closeInvoice();
-        actionBtn.parentElement.remove();
+        location.reload();
     }
 }
