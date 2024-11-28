@@ -1,7 +1,7 @@
 import { auth, db } from '../modules/firebase.js';
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 import { getDocs, getDoc, collection, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-import { deleteDocument } from '../modules/utils.js';
+import { deleteDocument, DataCache } from '../modules/utils.js';
 
 const app = document.getElementById('application');
 const html = `
@@ -154,6 +154,7 @@ function renderLoggedInMenu() {
             </li>
                     `);
     }
+    window.completeData = new DataCache();
     init();
     getData();
 }
@@ -394,7 +395,6 @@ window.saveOrder = (customer, orderId)=> {};
 window.deleteOrder = async (customer, orderId) => {
     if (customer == "-") {
         await deleteDocument("Orders", orderId);
-        // closeInvoice();
         location.reload();
     }
 }
