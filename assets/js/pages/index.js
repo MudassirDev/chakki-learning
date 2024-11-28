@@ -391,10 +391,10 @@ window.downloadInvoice = (button) => {
 
 window.saveOrder = (customer, orderId)=> {};
 
-window.deleteOrder = (customer, orderId) => {
+window.deleteOrder = async (customer, orderId) => {
     if (customer == "-") {
-        deleteDocument("Orders", orderId)
-        closeInvoice();
+        await deleteDocument("Orders", orderId);
+        // closeInvoice();
         location.reload();
     }
 }
