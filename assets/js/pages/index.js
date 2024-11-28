@@ -322,10 +322,10 @@ function initializeFilters() {
 }
 
 // Get Order Details
-window.getOrderDetails = async (orderId, customerId = null) => {
+window.getOrderDetails = async (orderId, customerId) => {
     try {
         let orderData;
-        if (customerId) {
+        if (customerId != "-") {
             const customerDoc = await getDoc(doc(db, "Customers", customerId));
             if (customerDoc.exists()) {
                 const orders = customerDoc.data().orders;
