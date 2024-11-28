@@ -389,8 +389,8 @@ function showReceipt(order, customer, orderId) {
                         <button onclick="closeInvoice()">Close</button>
                         <button class="download-invoice" onclick="downloadInvoice(this)">Download Invoice</button>
                         ${checkUsersPerm() ? 
-                            `<button class="save-invoice" onclick="saveOrder(${customer}, ${orderId})">Save</button>
-                             <button class="delete-invoice" onclick="deleteOrder(${customer}, ${orderId})">Delete</button>` 
+                            `<button class="save-invoice" onclick="saveOrder('${customer}', '${orderId}')">Save</button>
+                             <button class="delete-invoice" onclick="deleteOrder('${customer}', '${orderId}')">Delete</button>` 
                             : ""}
                     </div>
             </div>
