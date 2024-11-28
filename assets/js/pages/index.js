@@ -1,6 +1,7 @@
 import { auth, db } from '../modules/firebase.js';
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 import { getDocs, getDoc, collection, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+import { deleteDocument } from '../modules/utils.js';
 
 const app = document.getElementById('application');
 const html = `
@@ -416,4 +417,8 @@ window.downloadInvoice = (button) => {
 
 window.saveOrder = (customer, orderId)=> {};
 
-window.deleteOrder = (customer, orderId) => {}
+window.deleteOrder = (customer, orderId) => {
+    if (customer == "-") {
+        deleteDocument("Orders", orderId)
+    }
+}

@@ -1,5 +1,6 @@
 import { auth } from "./firebase.js"
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+import { deleteDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
 export const checkUser = () => {
     onAuthStateChanged(auth, (user) => {
@@ -27,4 +28,20 @@ export const initLogout = () => {
             console.log(error)
         });
     })
+}
+
+export const saveDoc = async (database, document, data) => {
+    try {
+        await setDoc(doc(db, database, document), data);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const deleteDocument = async (database, document) => {
+    try {
+        await deleteDoc(doc(db, database, document));
+    } catch (error) {
+        console.error(error);
+    }
 }
