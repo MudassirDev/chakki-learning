@@ -332,9 +332,11 @@ window.getOrderDetails = async (orderId, customerId = null) => {
                 orderData = orders.find(order => order.id === orderId);
             }
         } else {
+            console.log(orderId)
             const orderDoc = await getDoc(doc(db, "Orders", orderId));
             if (orderDoc.exists()) {
                 orderData = orderDoc.data().order;
+                console.log(orderData)
             }
         }
         if (orderData) showReceipt(orderData, customerId);
