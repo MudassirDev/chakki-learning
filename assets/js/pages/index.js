@@ -401,13 +401,13 @@ window.deleteOrder = async (customer, orderId) => {
         await deleteDocument("Orders", orderId);
         location.reload();
     } else {
-        const customers = await completeData.getCustomers();
-        const customerData = customers.find(custom => custom.id == customer);
-        console.log(customerData)
-        const updatedData =customerData.orders.filter(order => order.id !== orderId);
-        customerData.orders = updatedData;
-        await saveDoc("Customers", customer, {orders: customerData.orders});
-        completeData.setCustomers(customers);
-        console.log(await completeData.getCustomers());
+        // const customers = await completeData.getCustomers();
+        // const customerData = customers.find(custom => custom.id == customer);
+        // console.log(customerData)
+        // const updatedData =customerData.orders.filter(order => order.id !== orderId);
+        // customerData.orders = updatedData;
+        // await saveDoc("Customers", customer, {orders: customerData.orders});
+        // completeData.setCustomers(customers);
+        // location.reload();
     }
 }
