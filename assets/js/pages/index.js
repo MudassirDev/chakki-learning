@@ -1,7 +1,7 @@
 import { auth, db } from '../modules/firebase.js';
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 import { getDocs, getDoc, collection, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-import { deleteDocument, DataCache } from '../modules/utils.js';
+import { deleteDocument, DataCache, saveDoc } from '../modules/utils.js';
 
 const app = document.getElementById('application');
 const html = `
@@ -403,8 +403,11 @@ window.deleteOrder = async (customer, orderId) => {
     } else {
         const customers = await completeData.getCustomers();
         const customerData = customers.find(custom => custom.id == customer);
+        console.log(customerData)
+        await saveDoc("Customers", customer, customerData.orders);
         const updatedData = customerData.orders.filter(order => order.id !== orderId);
         customerData.orders = updatedData;
-        console.log(customers)
+        completeData.setCustomers(customers);
+        console.log(await completeData.getCustomers());
     }
 }
