@@ -403,8 +403,8 @@ window.deleteOrder = async (customer, orderId) => {
     } else {
         const customers = await completeData.getCustomers();
         const customerData = customers.find(custom => custom.id == customer);
-        const order = customerData.orders.find(order => order.id == orderId);
-        console.log(customerData);
-        console.log(order);
+        const updatedData = customerData.orders.filter(order => order.id !== orderId);
+        customerData.orders = updatedData;
+        console.log(customers)
     }
 }

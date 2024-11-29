@@ -76,6 +76,14 @@ export class DataCache {
       }
       return this.customers;
     }
+
+    setOrders(newOrders) {
+        this.orders = newOrders;
+    }
+
+    setCustomers(newData) {
+        this.customers = newData;
+    }
   
     clearCache() {
       this.orders = null;
