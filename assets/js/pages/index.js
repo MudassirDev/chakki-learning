@@ -404,7 +404,7 @@ window.deleteOrder = async (customer, orderId) => {
         const customers = await completeData.getCustomers();
         const customerData = customers.find(custom => custom.id == customer);
         console.log(customerData)
-        await saveDoc("Customers", customer, customerData.orders);
+        await saveDoc("Customers", customer, {orders: customerData.orders});
         const updatedData = customerData.orders.filter(order => order.id !== orderId);
         customerData.orders = updatedData;
         completeData.setCustomers(customers);
