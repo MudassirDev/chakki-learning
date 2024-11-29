@@ -400,5 +400,11 @@ window.deleteOrder = async (customer, orderId) => {
     if (customer == "-") {
         await deleteDocument("Orders", orderId);
         location.reload();
+    } else {
+        const customers = await completeData.getCustomers();
+        const customerData = customers.find(customer => customer.id == customer);
+        const order = customerData.orders.find(order => order.id = orderId);
+        console.log(customerData);
+        console.log(order);
     }
 }
