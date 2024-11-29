@@ -402,7 +402,7 @@ window.deleteOrder = async (customer, orderId) => {
         location.reload();
     } else {
         const customers = await completeData.getCustomers();
-        const customerData = customers.find(customer => customer.id == customer);
+        const customerData = customers.find(custom => custom.id == customer);
         const order = customerData.orders.find(order => order.id = orderId);
         console.log(customerData);
         console.log(order);
