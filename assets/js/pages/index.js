@@ -309,16 +309,13 @@ window.getOrderDetails = async (orderId, customerId) => {
     try {
         let orderData;
         if (customerId != "-") {
-            const customerDoc = await getDoc(doc(db, "Customers", customerId));
-            if (customerDoc.exists()) {
-                const orders = customerDoc.data().orders;
-                orderData = orders.find(order => order.id === orderId);
-            }
+            const customers = await completeData.getCustomers();
+            const customerDoc = customers.find(obj => obj.id == customerId);
+            const orders = customerDoc.orders;
+            orderData = orders.find(order => order.id === orderId);
         } else {
-            const orderDoc = await getDoc(doc(db, "Orders", orderId));
-            if (orderDoc.exists()) {
-                orderData = orderDoc.data().order;
-            }
+            const orders = await completeData.getOrders();
+            orderData = (orders.find(order => order.id == orderId)).order;
         }
         if (orderData) showReceipt(orderData, customerId, orderId);
     } catch (error) {
@@ -394,7 +391,7 @@ window.downloadInvoice = (button) => {
     invoiceContainer.style.maxWidth = "90%";
 }
 
-window.saveOrder = (customer, orderId)=> {};
+window.saveOrder = async (customer, orderId)=> {};
 
 window.deleteOrder = async (customer, orderId) => {
     if (customer == "-") {

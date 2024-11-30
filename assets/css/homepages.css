@@ -301,11 +301,11 @@ span[name="customer"] {
 
 .inv-actions {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 1000px;
     max-width: 90%;
     margin: 0 auto;
+    gap: 20px;
 }
 
 table {
