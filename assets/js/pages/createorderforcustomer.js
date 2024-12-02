@@ -16,7 +16,6 @@ const order = createOrder();
 
 async function fillCustomerSelect() {
     const customers = await completeData.getCustomers();
-    // const querySnapshot = await getDocs(collection(db, "Customers"));
     customerSelect.innerHTML = "<option value='select'>Select Customer</option>";
     customers.forEach(doc => {
         const option = document.createElement("option");

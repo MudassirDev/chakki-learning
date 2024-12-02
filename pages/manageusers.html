@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="/chakki-learning/assets/css/style.css">
     <link rel="stylesheet" href="/chakki-learning/assets/css/navbar.css">
     <link rel="shortcut icon" href="/chakki-learning/assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/chakki-learning/assets/css/homepages.css">
 </head>
 <body>
-    
+
     <nav id="navbar">
         <ul class="navbar-items flexbox-col">
             <li class="navbar-logo flexbox-left">
@@ -22,36 +23,12 @@
                     </svg>
                 </a>
             </li>
-            <li class="navbar-item flexbox-left">
+            <li class="navbar-item flexbox-left" id="home-item">
                 <a href="/chakki-learning" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <img src="/chakki-learning/assets/images/home.png" style="max-width: 35px;" alt="home icon" />
                     </div>
                     <span class="link-text">Home</span>
-                </a>
-            </li>
-            <li class="navbar-item flexbox-left">
-                <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
-                    <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="/chakki-learning/assets/images/customer.png" style="max-width: 30px;" alt="customer icon" />
-                    </div>
-                    <span class="link-text">Create Customer</span>
-                </a>
-            </li>
-            <li class="navbar-item flexbox-left">
-                <a href="/chakki-learning/pages/createorder.html" class="navbar-item-inner flexbox-left">
-                    <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
-                    </div>
-                    <span class="link-text">Create Order</span>
-                </a>
-            </li>
-            <li class="navbar-item flexbox-left">
-                <a href="/chakki-learning/pages/createorderforcustomer.html" class="navbar-item-inner flexbox-left">
-                    <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="/chakki-learning/assets/images/order.png" style="max-width: 35px;" alt="order icon">
-                    </div>
-                    <span class="link-text">Create Order (For Customer)</span>
                 </a>
             </li>
             <li class="navbar-item flexbox-left">
@@ -70,6 +47,35 @@
         <select name="customers" id="selectCustomer">
             <option value="select" selected="true">Select</option>
         </select>
+
+        <div class="total-details">
+            <div class="container">
+                <div class="header">
+                    <h6>Total Orders</h6>
+                </div>
+                <div class="body"><p id="total-orders">0</p></div>
+            </div>
+            <div class="container">
+                <div class="header">
+                    <h6>Total Amount Out</h6>
+                </div>
+                <div class="body"><p id="total-amount-out">0</p></div>
+            </div>
+            <div class="container">
+                <div class="header">
+                    <h6>Total Amount In</h6>
+                </div>
+                <div class="body"><p id="total-amount-in">0</p></div>
+            </div>
+            <div class="container">
+                <div class="header">
+                    <h6>Total Amount Remaining</h6>
+                </div>
+                <div class="body"><p id="total-amount-remaining">0</p></div>
+            </div>
+        </div>
     </div>
+
+    <script type="module" src="/chakki-learning/assets/js/pages/managecustomer.js"></script>
 </body>
 </html>
