@@ -355,7 +355,7 @@ function showReceipt(order, customer, orderId) {
                     <div></div>
                         <table>
                             <tr><th>Remaining</th><td>${order.remainingAmount}</td></tr>
-                            <tr><th>Paid</th><td><input type="number" id="paid-input" value="${order.paidAmount}" data-value="${order.paidAmount}"  ${window.user.displayName.toLowerCase() !== "admin"? "disabled" : ""} /></td></tr>
+                            <tr><th>Paid</th><td><input type="number" id="paid-input" value="${order.paidAmount}" data-value="${order.paidAmount}"  ${window.user.displayName?.toLowerCase() !== "admin"? "disabled" : ""} /></td></tr>
                             <tr><th>Total</th><td>${order.orderAmount}</td></tr>
                         </table>
                     </div>
