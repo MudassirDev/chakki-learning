@@ -1,12 +1,8 @@
 import { collection, doc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 import { db } from "../modules/firebase.js";
-import { initLogout, checkUser } from "../modules/utils.js";
+import { globalInit } from "../modules/utils.js";
 
-// checking User
-checkUser();
-
-// initializing event listener for logout
-initLogout();
+globalInit();
 
 // DOM Elements
 const createCustomerForm = document.getElementById('customer-main').querySelector('form');
