@@ -169,6 +169,14 @@ function renderLoggedInMenu() {
                     <span class="link-text">Create Order (For Customer)</span>
                 </a>
             </li>
+            <li class="navbar-item flexbox-left">
+                <a href="/chakki-learning/pages/manageusers.html" class="navbar-item-inner flexbox-left">
+                    <div class="navbar-item-inner-icon-wrapper flexbox">
+                        <img src="/chakki-learning/assets/images/customer.png" style="max-width: 35px;" alt="order icon">
+                    </div>
+                    <span class="link-text">Manage Users</span>
+                </a>
+            </li>
                     `);
     }
     window.completeData = new DataCache();

@@ -1,24 +1,24 @@
 import { createOrder, addItemToOrder, deleteOrderItem, saveCustomerOrderToDb, displayOrderItems } from '../modules/orders.js';
-import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
-import { db } from '../modules/firebase.js';
-// import { checkUser, initLogout } from '../modules/utils.js';
+import { checkUser, initLogout, DataCache } from '../modules/utils.js';
 
 // important functions
-// checkUser();
-// initLogout();
+checkUser();
+initLogout();
 
 const customerSelect = document.getElementById('selectCustomer');
 const addToDbForm = document.getElementById('add-to-db-form').querySelector('form');
 const addToDbLoader = document.getElementById('add-to-db-form').querySelector('.loader');
 const allForms = document.getElementById('add-to-cart-forms').querySelectorAll('form');
 const outcome = document.getElementById('outcome');
+const completeData = new DataCache();
 
 const order = createOrder();
 
 async function fillCustomerSelect() {
-    const querySnapshot = await getDocs(collection(db, "Customers"));
+    const customers = await completeData.getCustomers();
+    // const querySnapshot = await getDocs(collection(db, "Customers"));
     customerSelect.innerHTML = "<option value='select'>Select Customer</option>";
-    querySnapshot.forEach(doc => {
+    customers.forEach(doc => {
         const option = document.createElement("option");
         option.value = doc.id.toLowerCase();
         option.innerText = doc.id.toLowerCase();
