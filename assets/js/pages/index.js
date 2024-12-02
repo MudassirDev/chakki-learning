@@ -48,6 +48,24 @@ const html = `
                 </div>
                 <div class="body"><p id="total-customers"></p></div>
             </div>
+            <div class="container">
+                <div class="header">
+                    <h6>Total Amount Out</h6>
+                </div>
+                <div class="body"><p id="total-amount-out"></p></div>
+            </div>
+            <div class="container">
+                <div class="header">
+                    <h6>Total Amount In</h6>
+                </div>
+                <div class="body"><p id="total-amount-in"></p></div>
+            </div>
+            <div class="container">
+                <div class="header">
+                    <h6>Total Amount Remaining</h6>
+                </div>
+                <div class="body"><p id="total-amount-remaining"></p></div>
+            </div>
         </div>
         <div class="complete-data">
             
@@ -187,6 +205,9 @@ async function getData() {
     const dataTable = document.querySelector('.complete-data .data-table');
     const customerFilters = document.getElementById('customerFilters');
     let totalCustomer = 0, totalOrder = 0;
+    let totalAmount = 0;
+    let totalPaidAmount = 0;
+    let totalRemainingAmount = 0;
 
     try {
         const customers = await completeData.getCustomers();
@@ -196,26 +217,29 @@ async function getData() {
         totalOrder += orders.length
 
         customers.forEach((doc) => {
-            // totalCustomer++;
             const data = doc.orders;
             const customerId = doc.id;
             totalOrder += data.length;
 
             data.forEach((order, i) => {
-                // totalOrder++;
                 appendOrderRow(dataTable, customerId, i + 1, order);
+                totalAmount += order.orderAmount;
+                totalPaidAmount += order.paidAmount;
+                totalRemainingAmount += order.remainingAmount;
             });
 
             appendFilter(customerFilters, customerId);
         });
 
         orders.forEach((doc, index) => {
-            // totalOrder++;
             const order = doc.order;
             appendOrderRow(dataTable, "-", index + 1, order, doc.id);
+            totalAmount += order.orderAmount;
+            totalPaidAmount += order.paidAmount;
+            totalRemainingAmount += order.remainingAmount;
         });
 
-        updateSummary(totalCustomer, totalOrder);
+        updateSummary(totalCustomer, totalOrder, totalAmount, totalPaidAmount, totalRemainingAmount);
         initializeFilters();
     } catch (error) {
         console.error(error);
@@ -246,9 +270,12 @@ function appendFilter(customerFilters, customerId) {
     customerFilters.insertAdjacentHTML('beforeend', filterHTML);
 }
 
-function updateSummary(totalCustomer, totalOrder) {
+function updateSummary(totalCustomer, totalOrder, totalAmount, totalPaidAmount, totalRemainingAmount) {
     document.getElementById('total-customers').textContent = totalCustomer;
     document.getElementById('total-orders').textContent = totalOrder;
+    document.getElementById('total-amount-in').textContent = totalAmount;
+    document.getElementById('total-amount-out').textContent = totalPaidAmount;
+    document.getElementById('total-amount-remaining').textContent = totalRemainingAmount;
 }
 
 function initializeFilters() {
@@ -355,7 +382,7 @@ function showReceipt(order, customer, orderId) {
                     <div></div>
                         <table>
                             <tr><th>Remaining</th><td>${order.remainingAmount}</td></tr>
-                            <tr><th>Paid</th><td><input type="number" id="paid-input" value="${order.paidAmount}" data-value="${order.paidAmount}"  ${window.user.displayName?.toLowerCase() !== "admin"? "disabled" : ""} /></td></tr>
+                            <tr><th>Paid</th><td><input type="number" id="paid-input" value="${order.paidAmount}" data-value="${order.paidAmount}"  ${window.user.displayName?.toLowerCase() !== "admin" ? "disabled" : ""} /></td></tr>
                             <tr><th>Total</th><td>${order.orderAmount}</td></tr>
                         </table>
                     </div>
@@ -363,10 +390,10 @@ function showReceipt(order, customer, orderId) {
                     <div class="inv-actions">
                         <button onclick="closeInvoice()">Close</button>
                         <button class="download-invoice" onclick="downloadInvoice(this)">Download Invoice</button>
-                        ${checkUsersPerm() ? 
-                            `<button class="save-invoice" onclick="saveOrder('${customer}', '${orderId}')">Save</button>
-                             <button class="delete-invoice" onclick="deleteOrder('${customer}', '${orderId}')">Delete</button>` 
-                            : ""}
+                        ${checkUsersPerm() ?
+            `<button class="save-invoice" onclick="saveOrder('${customer}', '${orderId}')">Save</button>
+                             <button class="delete-invoice" onclick="deleteOrder('${customer}', '${orderId}')">Delete</button>`
+            : ""}
                     </div>
             </div>
         </div>
@@ -390,7 +417,7 @@ window.downloadInvoice = (button) => {
     invoiceContainer.style.maxWidth = "90%";
 }
 
-window.saveOrder = async (customer, orderId)=> {
+window.saveOrder = async (customer, orderId) => {
     const paidInput = document.getElementById('paid-input');
     if ((paidInput.value * 1) == (paidInput.getAttribute('data-value') * 1)) {
         throw new Error("Values cannot be same!")

@@ -325,7 +325,15 @@ table td {
     padding: 8px;
 }
 
-.paid-input {
+#paid-input::-webkit-inner-spin-button, 
+#paid-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#paid-input {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield; /* Modern browsers */
     border: none;
     outline: none;
     text-align: right;
