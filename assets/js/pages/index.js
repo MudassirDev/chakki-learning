@@ -273,8 +273,8 @@ function appendFilter(customerFilters, customerId) {
 function updateSummary(totalCustomer, totalOrder, totalAmount, totalPaidAmount, totalRemainingAmount) {
     document.getElementById('total-customers').textContent = totalCustomer;
     document.getElementById('total-orders').textContent = totalOrder;
-    document.getElementById('total-amount-in').textContent = totalAmount;
-    document.getElementById('total-amount-out').textContent = totalPaidAmount;
+    document.getElementById('total-amount-in').textContent = totalPaidAmount;
+    document.getElementById('total-amount-out').textContent = totalAmount;
     document.getElementById('total-amount-remaining').textContent = totalRemainingAmount;
 }
 
