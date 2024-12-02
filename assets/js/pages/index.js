@@ -1,6 +1,6 @@
 import { auth } from '../modules/firebase.js';
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-import { deleteDocument, DataCache, saveDoc } from '../modules/utils.js';
+import { deleteDocument, DataCache, saveDoc, checkUser } from '../modules/utils.js';
 
 const app = document.getElementById('application');
 const html = `
@@ -355,7 +355,7 @@ function showReceipt(order, customer, orderId) {
                     <div></div>
                         <table>
                             <tr><th>Remaining</th><td>${order.remainingAmount}</td></tr>
-                            <tr><th>Paid</th><td><input type="number" id="paid-input" value="${order.paidAmount}" data-value="${order.paidAmount}" /></td></tr>
+                            <tr><th>Paid</th><td><input type="number" id="paid-input" value="${order.paidAmount}" data-value="${order.paidAmount}"  ${window.user.displayName.toLowerCase() !== "admin"? "disabled" : ""} /></td></tr>
                             <tr><th>Total</th><td>${order.orderAmount}</td></tr>
                         </table>
                     </div>
