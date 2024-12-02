@@ -1,6 +1,5 @@
-import { auth, db } from '../modules/firebase.js';
+import { auth } from '../modules/firebase.js';
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-import { getDocs, getDoc, collection, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 import { deleteDocument, DataCache, saveDoc } from '../modules/utils.js';
 
 const app = document.getElementById('application');
@@ -356,7 +355,7 @@ function showReceipt(order, customer, orderId) {
                     <div></div>
                         <table>
                             <tr><th>Remaining</th><td>${order.remainingAmount}</td></tr>
-                            <tr><th>Paid</th><td>${order.paidAmount}</td></tr>
+                            <tr><th>Paid</th><td><input type="number" id="paid-input" value="${order.paidAmount}" data-value="${order.paidAmount}" /></td></tr>
                             <tr><th>Total</th><td>${order.orderAmount}</td></tr>
                         </table>
                     </div>
@@ -391,7 +390,14 @@ window.downloadInvoice = (button) => {
     invoiceContainer.style.maxWidth = "90%";
 }
 
-window.saveOrder = async (customer, orderId)=> {};
+window.saveOrder = async (customer, orderId)=> {
+    const paidInput = document.getElementById('paid-input');
+    if ((paidInput.value * 1) == (paidInput.getAttribute('data-value') * 1)) {
+        throw new Error("Values cannot be same!")
+    } else {
+        console.log(paidInput)
+    }
+};
 
 window.deleteOrder = async (customer, orderId) => {
     if (customer == "-") {
