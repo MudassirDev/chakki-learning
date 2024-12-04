@@ -12,7 +12,7 @@ attachFilterEvents();
 async function getData() {
     const dataTable = document.querySelector('.complete-data .data-table');
     const customerFilters = document.getElementById('customerFilters');
-    
+
     const summary = {
         totalCustomer: 0,
         totalOrder: 0,
@@ -80,21 +80,21 @@ function formatOrderId(orderId) {
 
 function updateSummary(summary) {
     const summaryData = {
-      'total-customers': summary.totalCustomer,
-      'total-orders': summary.totalOrder,
-      'total-amount-in': summary.totalPaidAmount,
-      'total-amount-out': summary.totalAmount,
-      'total-amount-remaining': summary.totalRemainingAmount,
+        'total-customers': summary.totalCustomer,
+        'total-orders': summary.totalOrder,
+        'total-amount-in': summary.totalPaidAmount,
+        'total-amount-out': summary.totalAmount,
+        'total-amount-remaining': summary.totalRemainingAmount,
     };
-  
+
     Object.entries(summaryData).forEach(([elementId, value]) => {
-      const element = document.getElementById(elementId);
-      if (element) {
-        element.textContent = value.toLocaleString();
-      }
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = value.toLocaleString();
+        }
     });
-  }
-  
+}
+
 
 // Get Order Details
 // Fetch Order Details
@@ -143,12 +143,41 @@ window.downloadInvoice = (button) => {
 
 window.saveOrder = async (customer, orderId) => {
     const paidInput = document.getElementById('paid-input');
-    if ((paidInput.value * 1) == (paidInput.getAttribute('data-value') * 1)) {
-        throw new Error("Values cannot be same!")
-    } else {
-        console.log(paidInput)
+    const newAmount = parseFloat(paidInput.value);
+    const originalAmount = parseFloat(paidInput.getAttribute('data-value'));
+
+    if (newAmount === originalAmount) {
+        throw new Error("Values cannot be the same!");
     }
+
+    const updateOrderAmounts = (order) => {
+        order.paidAmount = newAmount;
+        order.remainingAmount = order.orderAmount - newAmount;
+        return order;
+    };
+
+    const refreshUI = () => {
+        closeInvoice();
+        clearData();
+        getData();
+    };
+
+    if (customer === "-") {
+        const order = completeData.orders.find(o => o.id === orderId).order;
+        updateOrderAmounts(order);
+        await saveDoc("Orders", orderId, { order });
+    } else {
+        const customerData = completeData.customers.find(c => c.id === customer);
+        const order = customerData.orders.find(o => o.id === orderId);
+        updateOrderAmounts(order);
+        const updatedData = { orders: customerData.orders };
+        saveDoc("Customers", customer, updatedData);
+    }
+
+    refreshUI();
+    console.log("Order saved!", saveResult);
 };
+
 
 window.deleteOrder = async (customer, orderId) => {
     if (customer == "-") {
@@ -167,4 +196,11 @@ window.deleteOrder = async (customer, orderId) => {
     document.getElementById(orderId).remove();
     const totalOrders = document.getElementById('total-orders');
     totalOrders.textContent = totalOrders.textContent * 1 - 1;
+}
+
+function clearData () {
+    const table = document.querySelector('.complete-data .data-table');
+    while (table.children.length > 1) {
+        table.lastElementChild.remove();
+    }    
 }

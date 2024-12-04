@@ -91,7 +91,10 @@ export class DataCache {
     }
 }
 
-export const checkUsersPerm = () => window.user?.displayName?.toLowerCase() === "admin";
+export const checkUsersPerm = () => {
+  console.log("user permissions")
+  return window.user?.displayName?.toLowerCase() === "admin";
+};
 
 
 const navbar = () => {
@@ -208,8 +211,7 @@ export function showReceipt(order, customerId, orderId) {
                                         type="number" 
                                         id="paid-input" 
                                         value="${order.paidAmount}" 
-                                        data-value="${order.paidAmount}" 
-                                        ${checkUsersPerm() ? "disabled" : ""}
+                                        data-value="${order.paidAmount}"
                                     />
                                 </td>
                             </tr>
@@ -227,4 +229,7 @@ export function showReceipt(order, customerId, orderId) {
     `;
 
     document.body.insertAdjacentHTML("beforeend", invoiceHTML);
+    if (!checkUsersPerm()) {
+      document.getElementById('paid-input').disabled = true;
+    }
 }
