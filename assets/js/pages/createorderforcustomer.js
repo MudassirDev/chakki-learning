@@ -1,9 +1,10 @@
 import { createOrder, addItemToOrder, deleteOrderItem, saveCustomerOrderToDb, displayOrderItems } from '../modules/orders.js';
-import { checkUser, initLogout, DataCache } from '../modules/utils.js';
+import { DataCache, globalInit } from '../modules/utils.js';
 
 // important functions
-checkUser();
-initLogout();
+// checkUser();
+// initLogout();
+globalInit();
 
 const customerSelect = document.getElementById('selectCustomer');
 const addToDbForm = document.getElementById('add-to-db-form').querySelector('form');

@@ -140,7 +140,7 @@ const navbar = () => {
 }
 
 
-export const globalInit = () => {
+export const globalInit = async () => {
     checkUser();
     document.addEventListener('user-added', ()=>{
         navbar();
@@ -148,8 +148,8 @@ export const globalInit = () => {
     })
 
     window.data = new DataCache();
-    data.getCustomers();
-    data.getOrders();
+    await data.getCustomers();
+    await data.getOrders();
 }
 
 

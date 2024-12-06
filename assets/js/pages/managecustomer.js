@@ -1,6 +1,8 @@
 import { globalInit, checkUsersPerm, deleteDocument } from "../modules/utils.js";
+import { Table } from "../modules/datatable.js";
 
-globalInit()
+globalInit();
+window.table = new Table();
 
 const currentData = {
     totalOrders: 0,
@@ -72,11 +74,16 @@ function updateData(orders) {
     currentData.totalIn = totalIn;
     currentData.totalOut = totalOut;
     currentData.totalRemaining = totalRemaining;
-    showData();
+    showData(orders);
 }
 
-function showData() {
+function showData(orders) {
     document.querySelector('.total-details').outerHTML = updatedHtml();
+    window.table.clearTable();
+
+    orders?.forEach(order => {
+        window.table.addRow(order.id, currentData.currentCustomer, order);
+    });
 }
 
 async function deleteCustomer() {
@@ -89,6 +96,7 @@ async function deleteCustomer() {
 }
 
 document.addEventListener('user-added', ()=>{
+    console.log("ok")
     if (checkUsersPerm()) {
         const button = document.createElement("button");
         button.textContent = "Delete";
@@ -96,3 +104,8 @@ document.addEventListener('user-added', ()=>{
         document.getElementById('main').appendChild(button);
     }
 })
+
+
+window.updateSummary = () => {
+    getData(currentData.currentCustomer);
+}
