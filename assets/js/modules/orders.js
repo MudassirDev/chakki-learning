@@ -2,7 +2,7 @@ import { addDoc, collection, doc, getDoc, setDoc } from 'https://www.gstatic.com
 import { db } from './firebase.js';
 
 export const createOrder = () => ({
-    date: new Date().toISOString(), // Use current date as default
+    date: getFormattedDate(), // Use current date as default
     items: {},
     orderAmount: 0,
     paidAmount: 0,
@@ -100,3 +100,8 @@ export const saveCustomerOrderToDb = async (order, customerId, loader, form) => 
         form.style.display = "block";
     }
 };
+
+function getFormattedDate() {
+  const today = new Date();
+  return `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+}
