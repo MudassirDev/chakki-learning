@@ -67,7 +67,7 @@ class Row {
             });
         }
 
-        const customer = document.querySelector(`#${this.orderId} [name="customer"]`);
+        const customer = document.getElementById(`${this.orderId}`).querySelector(`[name="customer"]`);
         customer.addEventListener('click', ()=>{
             if (customer.textContent == "-") return;
         });
