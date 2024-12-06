@@ -60,7 +60,7 @@ class Row {
     }
 
     addEventListeners() {
-        const viewMoreButton = document.querySelector(`#${this.orderId} .view-more-btn`);
+        const viewMoreButton = document.getElementById(`${this.orderId}`).querySelector(`.view-more-btn`);
         if (viewMoreButton) {
             viewMoreButton.addEventListener('click', () => {
                 showReceipt(this.order, this.customerId, this.orderId);
