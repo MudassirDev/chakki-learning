@@ -70,8 +70,13 @@ button {
     padding: .8em 1.2em;
     cursor: pointer;
     outline: none;
+    background-color:#DC5431;
+    color:white;
+    border-radius:4px;
+    padding:10px !important;
 }
-
+button:hover {
+    background-color:#E37155;
 /* =======
 Lists
 ======= */
