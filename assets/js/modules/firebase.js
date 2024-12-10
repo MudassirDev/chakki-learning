@@ -3,14 +3,14 @@ import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyALfhkR7cRDhKP5E5BgR8UeNJ_9gjv44s8",
-    authDomain: "chakki-learning.firebaseapp.com",
-    projectId: "chakki-learning",
-    storageBucket: "chakki-learning.appspot.com",
-    messagingSenderId: "1011286300235",
-    appId: "1:1011286300235:web:d0c5577eace92a3a9f5fce",
-    measurementId: "G-8N10L72SL5"
-};
+    apiKey: "AIzaSyCAmDmDM_rYndxnkhIzHBrP6x0JPtDupzU",
+    authDomain: "chakki-1ad9d.firebaseapp.com",
+    projectId: "chakki-1ad9d",
+    storageBucket: "chakki-1ad9d.appspot.com",
+    messagingSenderId: "400902058518",
+    appId: "1:400902058518:web:ac8d50e36db35a3ed63b37",
+    measurementId: "G-D9548MQV0C"
+  };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
