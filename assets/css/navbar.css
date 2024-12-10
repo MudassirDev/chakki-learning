@@ -325,6 +325,9 @@ Navbar
     opacity: 1;
 }
 
+.header h6 {
+    font-size: 18px;
+}
 /* ======
 Main
 ====== */

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <link rel="stylesheet" href="/chakki-learning/assets/css/navbar.css">
     <link rel="shortcut icon" href="/chakki-learning/assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/chakki-learning/assets/css/homepages.css">
+    <link rel="stylesheet" href="/chakki-learning/assets/css/createorder.css">
 </head>
+
 <body>
 
     <nav id="navbar">
@@ -43,35 +46,44 @@
     </nav>
 
     <div id="main">
-        <label for="selectCustomer">Select Customer: </label>
-        <select name="customers" id="selectCustomer">
-            <option value="select" selected="true">Select</option>
-        </select>
-
+        <div class="order-for-customer" style="margin-bottom:20px;">
+            <label for="selectCustomer">Select Customer: </label>
+            <select name="customers" id="selectCustomer">
+                <option value="select" selected="true">Select</option>
+            </select>
+        </div>
         <div class="total-details">
             <div class="container">
                 <div class="header">
                     <h6>Total Orders</h6>
                 </div>
-                <div class="body"><p id="total-orders">0</p></div>
+                <div class="body">
+                    <p id="total-orders">0</p>
+                </div>
             </div>
             <div class="container">
                 <div class="header">
                     <h6>Total Amount Out</h6>
                 </div>
-                <div class="body"><p id="total-amount-out">0</p></div>
+                <div class="body">
+                    <p id="total-amount-out">0</p>
+                </div>
             </div>
             <div class="container">
                 <div class="header">
                     <h6>Total Amount In</h6>
                 </div>
-                <div class="body"><p id="total-amount-in">0</p></div>
+                <div class="body">
+                    <p id="total-amount-in">0</p>
+                </div>
             </div>
             <div class="container">
                 <div class="header">
                     <h6>Total Amount Remaining</h6>
                 </div>
-                <div class="body"><p id="total-amount-remaining">0</p></div>
+                <div class="body">
+                    <p id="total-amount-remaining">0</p>
+                </div>
             </div>
         </div>
 
@@ -92,4 +104,5 @@
     <script src="/chakki-learning/assets/js/libs/html2canvas.js.js"></script>
     <script type="module" src="/chakki-learning/assets/js/pages/managecustomer.js"></script>
 </body>
+
 </html>

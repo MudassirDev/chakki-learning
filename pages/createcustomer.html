@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Customer</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/navbar.css">
-    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/chakki-learning/assets/css/style.css">
+    <link rel="stylesheet" href="/chakki-learning/assets/css/navbar.css">
+    <link rel="stylesheet" href="/chakki-learning/assets/css/loginpage.css">
+    <link rel="shortcut icon" href="/chakki-learning/assets/images/favicon.png" type="image/x-icon">
 </head>
+
 <body>
 
     <nav id="navbar">
@@ -31,7 +34,7 @@
                 </a>
             </li>
             <li class="navbar-item flexbox-left">
-                <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
+                <a href="/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <img src="/assets/images/customer.png" style="max-width: 30px;" alt="customer icon" />
                     </div>
@@ -39,7 +42,7 @@
                 </a>
             </li>
             <li class="navbar-item flexbox-left">
-                <a href="/chakki-learning/pages/createorder.html" class="navbar-item-inner flexbox-left">
+                <a href="/pages/createorder.html" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <img src="/assets/images/order.png" style="max-width: 35px;" alt="order icon">
                     </div>
@@ -47,7 +50,7 @@
                 </a>
             </li>
             <li class="navbar-item flexbox-left">
-                <a href="/chakki-learning/pages/createorderforcustomer.html" class="navbar-item-inner flexbox-left">
+                <a href="/pages/createorderforcustomer.html" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
                         <img src="/assets/images/order.png" style="max-width: 35px;" alt="order icon">
                     </div>
@@ -65,18 +68,25 @@
         </ul>
     </nav>
 
-    <div id="main">
+    <div id="main" class="create-customer-container">
         <div id="customer-main">
             <form>
-                <input type="text" name="customer-name" placeholder="Name">
-                <input type="submit" value="Create Customer">
+                <div class="main-container create-customer-container">
+                    <div class="login-fields">
+                        <input type="text" name="customer-name" placeholder="Name">
+                    </div>
+                    <div class="login-fields">
+                        <input type="submit" value="Create Customer" class="submit-btn">
+                    </div>
+                </div>
             </form>
             <div class="loader" style="display: none;"></div>
         </div>
     </div>
 
-    
+
     <script type="module" src="/chakki-learning/assets/js/pages/createcustomer.js"></script>
 
 </body>
+
 </html>
