@@ -100,6 +100,7 @@ document.addEventListener('user-added', ()=>{
     if (checkUsersPerm()) {
         const button = document.createElement("button");
         button.textContent = "Delete";
+        button.style.marginTop = "20px";
         button.addEventListener("click", deleteCustomer);
         document.getElementById('main').appendChild(button);
     }
