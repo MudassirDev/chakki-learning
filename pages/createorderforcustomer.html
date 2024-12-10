@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Order For Customer</title>
     <link rel="stylesheet" href="/chakki-learning/assets/css/style.css">
     <link rel="stylesheet" href="/chakki-learning/assets/css/navbar.css">
+    <link rel="stylesheet" href="/chakki-learning/assets/css/createorder.css">
     <link rel="shortcut icon" href="/chakki-learning/assets/images/favicon.png" type="image/x-icon">
 </head>
+
 <body>
-    
+
     <nav id="navbar">
         <ul class="navbar-items flexbox-col">
             <li class="navbar-logo flexbox-left">
@@ -33,7 +36,8 @@
             <li class="navbar-item flexbox-left">
                 <a href="/chakki-learning/pages/createcustomer.html" class="navbar-item-inner flexbox-left">
                     <div class="navbar-item-inner-icon-wrapper flexbox">
-                        <img src="/chakki-learning/assets/images/customer.png" style="max-width: 30px;" alt="customer icon" />
+                        <img src="/chakki-learning/assets/images/customer.png" style="max-width: 30px;"
+                            alt="customer icon" />
                     </div>
                     <span class="link-text">Create Customer</span>
                 </a>
@@ -66,14 +70,15 @@
     </nav>
 
     <div id="main">
-        <label for="selectCustomer">Select Customer: </label>
-        <select name="customers" id="selectCustomer">
-            <option value="select" selected="true">Select</option>
-        </select>
-    
-        <div style="display: none;" id="main-add-to-cart-div" class="add-to-cart">
+        <div class="order-for-customer">
+            <label for="selectCustomer">Select Customer: </label>
+            <select name="customers" id="selectCustomer">
+                <option value="select" selected="true">Select</option>
+            </select>
+        </div>
+        <div style="display: none;" id="main-add-to-cart-div" class="add-to-cart order-conatiner">
             <div class="forms" id="add-to-cart-forms">
-                <form class="item" id="sada_ata">
+                <form class="item form-container" id="sada_ata">
                     <p>Sada-ata</p>
                     <input type="number" placeholder="Quantity" name="quantity" required>
                     <input type="number" placeholder="amount" name="amount" required>
@@ -82,9 +87,9 @@
                         <option value="g">Gram</option>
                     </select>
                     <input type="number" placeholder="price" name="price" required>
-                    <input type="submit" value="Add to Cart">
+                    <input type="submit" value="Add to Cart" class="addToCart-btn">
                 </form>
-                <form class="item" id="special_ata">
+                <form class="item form-container" id="special_ata">
                     <p>Special-ata</p>
                     <input type="number" placeholder="Quantity" name="quantity" required>
                     <input type="number" placeholder="amount" name="amount" required>
@@ -93,9 +98,9 @@
                         <option value="g">Gram</option>
                     </select>
                     <input type="number" placeholder="price" name="price" required>
-                    <input type="submit" value="Add to Cart">
+                    <input type="submit" value="Add to Cart" class="addToCart-btn">
                 </form>
-                <form class="item" id="dara">
+                <form class="item form-container" id="dara">
                     <p>dara</p>
                     <input type="number" placeholder="Quantity" name="quantity" required>
                     <input type="number" placeholder="amount" name="amount" required>
@@ -104,9 +109,9 @@
                         <option value="g">Gram</option>
                     </select>
                     <input type="number" placeholder="price" name="price" required>
-                    <input type="submit" value="Add to Cart">
+                    <input type="submit" value="Add to Cart" class="addToCart-btn">
                 </form>
-                <form class="item" id="chokar">
+                <form class="item form-container" id="chokar">
                     <p>chokar</p>
                     <input type="number" placeholder="Quantity" name="quantity" required>
                     <input type="number" placeholder="amount" name="amount" required>
@@ -115,26 +120,27 @@
                         <option value="g">Gram</option>
                     </select>
                     <input type="number" placeholder="price" name="price" required>
-                    <input type="submit" value="Add to Cart">
+                    <input type="submit" value="Add to Cart" class="addToCart-btn">
                 </form>
             </div>
-    
+
             <div id="add-to-db-form">
-                <form>
+                <form class="form-container">
                     <p>Order Form</p>
                     <input type="number" name="paid_amount" placeholder="Paid amount" required>
-                    <input type="submit" value="Create Order">
+                    <input type="submit" value="Create Order" class="addToCart-btn">
                     <p class="order_value"></p>
                 </form>
                 <div style="display: none;" class="loader"></div>
             </div>
-    
+
             <div id="outcome">
             </div>
         </div>
     </div>
 
-    
+
     <script type="module" src="/chakki-learning/assets/js/pages/createorderforcustomer.js"></script>
 </body>
+
 </html>
